@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Мій веб-сайт</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Ласкаво просимо на мій веб-сайт!</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Головна</a></li>
+                <li><a href="#">Про нас</a></li>
+                <li><a href="#">Контакти</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-8 col-offset-2">
+                <h3 class="Title">Незабаром відкриття нашого магазину</h3>
+                <h3 class="Title">Залишайте ваш емейл, щоб бути першим, хто про це дізнається</h3>
+            </div>
+        </div>
+    </div>
+
+
+    <footer>
+        <p>© 2023 Мій веб-сайт. Усі права захищені.</p>
+    </footer>
+<link rel="stylesheet" href="{% static 'bootstrap/js/bootstrap.min.js' %}">
+</body>
+</html>

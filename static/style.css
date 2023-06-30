@@ -1,0 +1,41 @@
+/* Загальні стилі */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Стилі для заголовка */
+h1 {
+    color: #333;
+}
+
+/* Стилі для навігаційного меню */
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+/* Стилі для основного вмісту сторінки */
+section {
+    padding: 20px;
+}
+
+/* Стилі для підвалу */
+footer {
+    background-color: #f5f5f5;
+    padding: 10px;
+    text-align: center;
+    font-size: 12px;
+}
