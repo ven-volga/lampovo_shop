@@ -22,8 +22,17 @@
     <div class="container">
         <div class="row">
             <div class="col-8 col-offset-2">
-                <h3 class="Title">Незабаром відкриття нашого магазину</h3>
+                <h3 class="Title">Незабаром відкриття нашого магазину {{ current_date }}</h3>
                 <h3 class="Title">Залишайте ваш емейл, щоб бути першим, хто про це дізнається</h3>
+                <div>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <div>
+                            <button type="submit" class="btn btn-primary">Відправити</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
