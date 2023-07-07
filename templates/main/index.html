@@ -1,46 +1,57 @@
-{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="ua">
 <head>
     <meta charset="UTF-8">
-    <title>Мій веб-сайт</title>
-    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    
+    <title>Lampovo</title>
 </head>
 <body>
-    <header>
-        <h1>Ласкаво просимо на мій веб-сайт!</h1>
-        <nav>
-            <ul>
-                <li><a href="#">Головна</a></li>
-                <li><a href="#">Про нас</a></li>
-                <li><a href="#">Контакти</a></li>
+  <!-- Navigation-->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
+    <div class="container px-5">
+        <a class="navbar-brand fw-bold" href="#page-top"><h4>Lampovo</h4></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi-list"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
+                <li class="nav-item"><a class="nav-link me-lg-3" href="#features">Features</a></li>
+                <li class="nav-item"><a class="nav-link me-lg-3" href="#download">Download</a></li>
             </ul>
-        </nav>
-    </header>
-
-
-    <div class="container">
-        <div class="row">
-            <div class="col-8 col-offset-2">
-                <h3 class="Title">Незабаром відкриття нашого магазину {{ current_date }}</h3>
-                <h3 class="Title">Залишайте ваш емейл, щоб бути першим, хто про це дізнається</h3>
-                <div>
-                    <form action="" method="post">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <div>
-                            <button type="submit" class="btn btn-primary">Відправити</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+            <button class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" data-bs-toggle="modal" data-bs-target="#feedbackModal">
+                <span class="d-flex align-items-center">
+                    <i class="bi-chat-text-fill"></i>
+                    <span class="small">Card</span>
+                </span>
+            </button>
         </div>
     </div>
+  </nav>
+
+<div class="container cstm-padding">
+  <div class="row">
+    <div class="col">
+      power container
+    </div>
+  </div>
+</div>
+
+
 
 
     <footer>
-        <p>© 2023 Мій веб-сайт. Усі права захищені.</p>
+      <div class="container text-start">
+        <div class="row">
+          <div class="col">
+            © 2023 Lampovo manufacturing company. Усі права захищені.
+          </div>
+        </div>
+      </div>
     </footer>
-<link rel="stylesheet" href="{% static 'bootstrap/js/bootstrap.min.js' %}">
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

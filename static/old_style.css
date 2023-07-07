@@ -1,0 +1,41 @@
+html, body {
+    height: 100%;
+    max-height: 100%;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    line-height: 30px;
+}
+.top-container {
+    padding-top: 10%;
+    font-weight: 400;
+    line-height: 30px;
+}
+.general-container {
+    background: url('img/bg_image.webp');
+    height: 100%;
+    color: black;
+}
+
+.general-container form{
+    margin-top: 25px;
+}
+
+.general-container form label{
+    height: 100%;
+    color: rgb(11, 1, 107);
+}
+
+.title{
+    color: firebrick;
+    text-align: center;
+}
+
+.btn-color{
+    background-color: rgb(37, 215, 58);
+    border: none;
+}
+
+.btn-color:hover{
+    background-color: rgb(7, 161, 25);
+    border: none;
+}
