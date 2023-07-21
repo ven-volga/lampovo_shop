@@ -1,11 +1,109 @@
-.cstm-header {
-    padding-top: 15px;
-    padding-bottom: 5px;
-    background-color: rgb(44, 24, 2);
-    color: bisque;
+.head-style {
+    color: rgb(46, 48, 47);
+    font-size: 24px;
+    font-family: 'Artegra Sans Extended Alt';
+    font-weight: normal;
+    font-style: normal;
+    color: white;
+}
+
+.icon-style {
+    color: rgb(46, 48, 47);
+    font-size: 24px;
+    text-decoration: none;
+}
+.icon-style:hover {
+    color: rgb(81, 81, 81);
+}
+
+.logo-style {
+    color: rgb(46, 48, 47);
+    font-size: 38px;
+    font-family: 'Artegra Sans Extended Alt';
+    font-weight: normal;
+    font-style: normal;
+    text-align: center;
+}
+
+.nav-style {
+    font-family: 'Artegra Sans Extended Alt';
+    font-weight: 200;
+    font-style: normal;
+    text-decoration: none;
+    text-transform: uppercase;
+    display: block;
+    text-align: center;
+    color: rgb(46, 48, 47);
+    padding: 6px 4px 4px 2px;
+    border: 1px solid white;
+
+}
+.nav-style:hover {
+    color: rgb(81, 81, 81);
+    border: 1px solid rgb(81, 81, 81);
+    border-radius: 2px;
+}
+
+.line {
+    margin-top: 40px;
+    font-family: 'Artegra Sans Extended Alt';
+    font-weight: 200;
+    font-style: normal;
+    font-size:large;
+    color: rgb(46, 48, 47);
+    text-align: center;
+    overflow: hidden;
+    text-align: center;
+}
+
+.line:before,
+.line:after {
+    content: '';
+    display: inline-block;
+    width: 100%;
+    height: 1px;
+    background: rgb(46, 48, 47);
+    z-index: -1;
+    position: relative;
     vertical-align: middle;
 }
 
-.cstm-padding {
-    padding-top: 65px;
+.line:before {
+    right: 15px;
+    margin: 0 0 0 -100%;
+}
+.line:after {
+    left: 15px;
+    margin: 0 -100% 0 0;
+}
+
+.card-style {
+    color: rgb(81, 81, 81);
+    border: 1px solid white;
+    border-radius: 2px;
+    font-family: 'Artegra Sans Extended Alt';
+    font-weight: 200;
+    font-style: normal;
+}
+
+.card-btn-style {
+    background-color: whitesmoke;
+    border: 1px solid rgb(46, 48, 47);
+    border-radius: 2px;
+    color: rgb(46, 48, 47);
+}
+.card-btn-style:hover {
+    background-color: rgb(46, 48, 47);
+    border: 1px solid rgb(46, 48, 47);
+    border-radius: 2px;
+    color: whitesmoke;
+}
+
+.is-block {
+    border-radius: 0;
+    border: 1px solid white;
+    font-family: 'Artegra Sans Extended Alt';
+    font-weight: 200;
+    font-style: normal;
+
 }
