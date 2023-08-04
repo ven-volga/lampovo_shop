@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static '/img/favicon.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static '/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static '/style.css' %}">
+
+    <title>{% block title %}Lampovo{% endblock title %}</title>
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="d-flex flex-row" style="height: 80px; background-color: white">
+                    <div class="ps-2 ps-md-4 head-style align-self-center">
+                        {% block name %}{% endblock name %}
+                    </div>
+                    <div class="pe-2 pe-md-4 align-self-center ms-auto"><a href="#user"
+                                                                           class="fa-solid fa-user icon-style"></a>
+                    </div>
+                    <div class="pe-2 pe-md-4 align-self-center"><a href="#cart"
+                                                                   class="fa-solid fa-cart-shopping icon-style"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main bloc -->
+<main class="container">
+    <!-- Logo -->
+    <div class="container" style="background-color: white; height: 80px;">
+        <div class="row">
+            <div class="col logo-style">Lampovo</div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <div class="container-fluid mb-3">
+        <div class="row justify-content-around">
+            <div class="col col-12 col-md-3 col-lg-2"><a href="#shop" class="nav-style">SHOP</a></div>
+            <div class="col col-12 col-md-3 col-lg-2"><a href="#about" class="nav-style">ABOUT</a></div>
+            <div class="col col-12 col-md-3 col-lg-2"><a href="#delivery" class="nav-style">DELIVERY</a></div>
+            <div class="col col-12 col-md-3 col-lg-2"><a href="#contact" class="nav-style">CONTACT</a></div>
+        </div>
+    </div>
+
+<!-- End page head -->
+{% block container %}
+
+{% endblock container %}
+
+<!-- Start page footer-->
+<footer>
+    <!-- Main footer bloc -->
+    <div class="footer-style">
+        <div class="link-bloc">
+            <ul>
+                <li><a href="#" class="footer-link">Shop</a></li>
+                <li><a href="#" class="footer-link">About us</a></li>
+                <li><a href="#" class="footer-link">Contact</a></li>
+            </ul>
+        </div>
+        <div class="link-bloc">
+            <ul>
+                <li><a href="#" class="footer-link">Shipping & Returns</a></li>
+                <li><a href="#" class="footer-link">Store Policy</a></li>
+                <li><a href="#" class="footer-link">Payment Methods</a></li>
+            </ul>
+        </div>
+        <div class="footer-icon-bloc">
+            <a href="#"><img class="footer-icon" src="{% static '/img/icons/instagram.webp' %}" alt="intagram_logo"></a>
+            <a href="#"><img class="footer-icon" src="{% static '/img/icons/facebook.webp' %}" alt="facebook_logo"></a>
+            <a href="#"><img class="footer-icon" src="{% static '/img/icons/pinterest.webp' %}"
+                             alt="pinterest_logo"></a>
+            <a href="#"><img class="footer-icon" src="{% static '/img/icons/youtube.webp' %}" alt="youtube_logo"></a>
+        </div>
+    </div>
+
+    <!-- Copyright bloc -->
+    <div class="copyright">
+        <span>© 2023 by Lampovo | Design & Development by SkyDev | Powered on Django</span>
+    </div>
+</footer>
+<script src="{% static '/bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="https://kit.fontawesome.com/9984184d83.js" crossorigin="anonymous"></script>
+</body>
+</html>
