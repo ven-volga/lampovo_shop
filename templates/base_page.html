@@ -17,13 +17,30 @@
             <div class="col">
                 <div class="d-flex flex-row" style="height: 80px; background-color: white">
                     <div class="ps-2 ps-md-4 head-style align-self-center">
-                        {% block name %}{% endblock name %}
+                        {% block name %} {% endblock name %}
                     </div>
-                    <div class="pe-2 pe-md-4 align-self-center ms-auto"><a href="#user"
-                                                                           class="fa-solid fa-user icon-style"></a>
+
+                    {% comment %} User button {% endcomment %}
+                    <div class="pe-2 pe-md-4 align-self-center ms-auto">
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'user' %}">
+                                <i class="fa-solid fa-user icon-style"></i>
+                                <span class="user-style">{{ user.username }}</span>
+                            </a>
+                        {% else %}
+                            <a href="{% url 'login' %}">
+                                <i class="fa-solid fa-user icon-style"></i>
+                                <span class="user-style">Log in</span>
+                            </a>
+                        {% endif %}
                     </div>
-                    <div class="pe-2 pe-md-4 align-self-center"><a href="#cart"
-                                                                   class="fa-solid fa-cart-shopping icon-style"></a>
+                    
+                    {% comment %} Card button {% endcomment %}
+                    <div class="pe-2 pe-md-4 align-self-center">
+                        <a href="#cart">
+                            <i class="fa-solid fa-cart-shopping icon-style"></i>
+                            <span class="user-style">0</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -76,8 +93,7 @@
         <div class="footer-icon-bloc">
             <a href="#"><img class="footer-icon" src="{% static '/img/icons/instagram.webp' %}" alt="intagram_logo"></a>
             <a href="#"><img class="footer-icon" src="{% static '/img/icons/facebook.webp' %}" alt="facebook_logo"></a>
-            <a href="#"><img class="footer-icon" src="{% static '/img/icons/pinterest.webp' %}"
-                             alt="pinterest_logo"></a>
+            <a href="#"><img class="footer-icon" src="{% static '/img/icons/pinterest.webp' %}" alt="pinterest_logo"></a>
             <a href="#"><img class="footer-icon" src="{% static '/img/icons/youtube.webp' %}" alt="youtube_logo"></a>
         </div>
     </div>
