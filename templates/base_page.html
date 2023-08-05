@@ -19,20 +19,36 @@
                     <div class="ps-2 ps-md-4 head-style align-self-center">
                         {% block name %} {% endblock name %}
                     </div>
-
-                    {% comment %} User button {% endcomment %}
-                    <div class="pe-2 pe-md-4 align-self-center ms-auto">
-                        {% if user.is_authenticated %}
+                    <!-- User head block -->
+                    {% if user.is_authenticated %}
+                        <div class="pe-2 pe-md-4 align-self-center ms-auto">
                             <a href="{% url 'user' %}">
                                 <i class="fa-solid fa-user icon-style"></i>
                                 <span class="user-style">{{ user.username }}</span>
                             </a>
-                        {% else %}
-                            <a href="{% url 'login' %}">
-                                <i class="fa-solid fa-user icon-style"></i>
-                                <span class="user-style">Log in</span>
-                            </a>
-                        {% endif %}
+                        </div>
+                    {% else %}
+                    <div type="button" class="pe-2 pe-md-4 align-self-center ms-auto" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <i class="fa-solid fa-user icon-style"></i>
+                        <span class="user-style">Sign in</span>
+                    </div>
+                    {% endif %}
+
+                    
+                    <!-- Modal Login/Register -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Sign in or Register</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div><a href="{% url 'login' %}" class="modal-btn">Sign in</a></div>
+                                <div><a href="{% url 'register' %}" class="modal-btn">Register</a></div>
+                            </div>
+                        </div>
+                        </div>
                     </div>
                     
                     {% comment %} Card button {% endcomment %}

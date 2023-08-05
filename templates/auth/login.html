@@ -1,11 +1,42 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <link rel="shortcut icon" href="{% static '/img/favicon.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static '/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static '/style.css' %}">
+    <title>Sign in</title>
 </head>
 <body>
-    <h1>Log in page</h1>
+    <h1>Sign in</h1>
+    <hr>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <form  method="post" action="{% url 'login' %}">
+                    <div class="row">
+                        <div class="col"><h4>{{ attention }}</h4></div>
+                    </div>
+                    {% csrf_token %}
+                    <div class="mb-3">
+                      <label for="username" class="form-label">User name</label>
+                      <input type="text" class="form-control" id="username" name="username" aria-describedby="nameHelp">
+                      <div id="nameHelp" class="form-text">Enter your user name</div>
+                    </div>
+                    <div class="mb-3">
+                      <label for="password" class="form-label">Password</label>
+                      <input type="password" class="form-control" id="password" name="password">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Sign in</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+      <script src="{% static '/bootstrap/js/bootstrap.min.js' %}"></script>
 </body>
 </html>

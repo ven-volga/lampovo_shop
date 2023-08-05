@@ -1,3 +1,36 @@
+@font-face {
+    font-family: 'Artegra Sans Extended Alt';
+    src: url('/static/fonts/ArtegraSansExAltBlack.woff2') format('woff2'),
+         url('/static/fonts/ArtegraSansExAltBlack.woff') format('woff');
+    font-weight: 1000;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Artegra Sans Extended Alt';
+    src: url('/static/fonts/ArtegraSansExAltBold.woff2') format('woff2'),
+         url('/static/fonts/ArtegraSansExAltBold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Artegra Sans Extended Alt';
+    src: url('/static/fonts/ArtegraSansExAltRegular.woff2') format('woff2'),
+         url('/static/fonts/ArtegraSansExAltRegular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Artegra Sans Extended Alt';
+    src: url('/static/fonts/ArtegraSansExAltLight.woff2') format('woff2'),
+         url('/static/fonts/ArtegraSansExAltLight.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;
+}
+
+
 a {
     text-decoration: none;
 }
@@ -26,9 +59,34 @@ a {
     color: rgb(46, 48, 47);
     font-size: 38px;
     font-family: 'Artegra Sans Extended Alt';
-    font-weight: normal;
+    font-weight: 1000;
     font-style: normal;
     text-align: center;
+}
+
+.modal-title {
+    color: rgb(46, 48, 47);
+    font-family: 'Artegra Sans Extended Alt';
+}
+
+.modal-btn {
+    font-family: 'Artegra Sans Extended Alt';
+    font-weight: 200;
+    font-style: normal;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    color: rgb(46, 48, 47);
+    padding: 6px 4px 4px 2px;
+    border: 1px solid white;
+}
+
+.modal-btn:hover {
+    background-color: rgb(46, 48, 47);
+    border: 1px solid rgb(46, 48, 47);
+    border-radius: 3px;
+    transition: 0.2s linear;
+    color: whitesmoke;
 }
 
 .nav-style {
@@ -170,18 +228,3 @@ li {
     justify-content: center;
     align-items: center;
 }
-
-.dropdown {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    padding: 12px 16px;
-    z-index: 1;
-  }
