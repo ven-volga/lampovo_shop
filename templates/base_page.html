@@ -11,114 +11,105 @@
     <title>{% block title %}Lampovo{% endblock title %}</title>
 </head>
 <body>
-<header>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <div class="d-flex flex-row" style="height: 80px; background-color: white">
-                    <div class="ps-2 ps-md-4 head-style align-self-center">
-                        {% block name %} {% endblock name %}
-                    </div>
-                    <!-- User head block -->
-                    {% if user.is_authenticated %}
+<div class="page-wrapper">
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="d-flex flex-row" style="height: 80px; background-color: white">
+                        <!-- Page name bloc -->
+                        <div class="ps-2 ps-md-4 head-style align-self-center">
+                            {% block name %} {% endblock name %}
+                        </div>
+                        <!-- User head bloc -->
+                        {% if user.is_authenticated %}
                         <div class="pe-2 pe-md-4 align-self-center ms-auto">
                             <a href="{% url 'user' %}">
                                 <i class="fa-solid fa-user icon-style"></i>
                                 <span class="user-style">{{ user.username }}</span>
                             </a>
                         </div>
-                    {% else %}
-                    <div type="button" class="pe-2 pe-md-4 align-self-center ms-auto" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        <i class="fa-solid fa-user icon-style"></i>
-                        <span class="user-style">Sign in</span>
-                    </div>
-                    {% endif %}
+                        {% else %}
+                        <div type="button" class="pe-2 pe-md-4 align-self-center ms-auto" data-bs-toggle="modal"
+                             data-bs-target="#exampleModal">
+                            <i class="fa-solid fa-user icon-style"></i>
+                            <span class="user-style">Sign in</span>
+                        </div>
+                        {% endif %}
 
-                    
-                    <!-- Modal Login/Register -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Sign in or Register</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div><a href="{% url 'login' %}" class="modal-btn">Sign in</a></div>
-                                <div><a href="{% url 'register' %}" class="modal-btn">Register</a></div>
+
+                        <!-- Modal Login/Register -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                             aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Sign in or Register</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div><a href="{% url 'login' %}" class="modal-btn">Sign in</a></div>
+                                        <div><a href="{% url 'register' %}" class="modal-btn">Register</a></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
+                        {% comment %} Card button {% endcomment %}
+                        <div class="pe-2 pe-md-4 align-self-center">
+                            <a href="#cart">
+                                <i class="fa-solid fa-cart-shopping icon-style"></i>
+                                <span class="user-style">0</span>
+                            </a>
                         </div>
-                    </div>
-                    
-                    {% comment %} Card button {% endcomment %}
-                    <div class="pe-2 pe-md-4 align-self-center">
-                        <a href="#cart">
-                            <i class="fa-solid fa-cart-shopping icon-style"></i>
-                            <span class="user-style">0</span>
-                        </a>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</header>
+    </header>
 
-<!-- Main bloc -->
-<main class="container">
-    <!-- Logo -->
-    <div class="container" style="background-color: white; height: 80px;">
-        <div class="row">
-            <div class="col logo-style">Lampovo</div>
+    <main class="wrapper">
+        {% block container %}
+
+        <!-- For page content -->
+
+        {% endblock container %}
+    </main>
+
+    <footer>
+        <!-- Main footer bloc -->
+        <div class="footer-style">
+            <div class="link-bloc">
+                <ul>
+                    <li><a href="#" class="footer-link">Shop</a></li>
+                    <li><a href="#" class="footer-link">About us</a></li>
+                    <li><a href="#" class="footer-link">Contact</a></li>
+                </ul>
+            </div>
+            <div class="link-bloc">
+                <ul>
+                    <li><a href="#" class="footer-link">Shipping & Returns</a></li>
+                    <li><a href="#" class="footer-link">Store Policy</a></li>
+                    <li><a href="#" class="footer-link">Payment Methods</a></li>
+                </ul>
+            </div>
+            <div class="footer-icon-bloc">
+                <a href="https://www.instagram.com/l_ampovo/"><img class="footer-icon" src="{% static '/img/icons/instagram.webp' %}" alt="intagram_logo"></a>
+                <a href="#"><img class="footer-icon" src="{% static '/img/icons/facebook.webp' %}" alt="facebook_logo"></a>
+                <a href="#"><img class="footer-icon" src="{% static '/img/icons/pinterest.webp' %}"
+                                 alt="pinterest_logo"></a>
+                <a href="#"><img class="footer-icon" src="{% static '/img/icons/youtube.webp' %}"
+                                 alt="youtube_logo"></a>
+            </div>
         </div>
-    </div>
 
-    <!-- Navbar -->
-    <div class="container-fluid mb-3">
-        <div class="row justify-content-around">
-            <div class="col col-12 col-md-3 col-lg-2"><a href="#shop" class="nav-style">SHOP</a></div>
-            <div class="col col-12 col-md-3 col-lg-2"><a href="#about" class="nav-style">ABOUT</a></div>
-            <div class="col col-12 col-md-3 col-lg-2"><a href="#delivery" class="nav-style">DELIVERY</a></div>
-            <div class="col col-12 col-md-3 col-lg-2"><a href="#contact" class="nav-style">CONTACT</a></div>
+        <!-- Copyright bloc -->
+        <div class="copyright">
+            <span>© 2023 by Lampovo | Design & Development by SkyDev | Powered on Django</span>
         </div>
-    </div>
-
-<!-- End page head -->
-{% block container %}
-
-{% endblock container %}
-
-<!-- Start page footer-->
-<footer>
-    <!-- Main footer bloc -->
-    <div class="footer-style">
-        <div class="link-bloc">
-            <ul>
-                <li><a href="#" class="footer-link">Shop</a></li>
-                <li><a href="#" class="footer-link">About us</a></li>
-                <li><a href="#" class="footer-link">Contact</a></li>
-            </ul>
-        </div>
-        <div class="link-bloc">
-            <ul>
-                <li><a href="#" class="footer-link">Shipping & Returns</a></li>
-                <li><a href="#" class="footer-link">Store Policy</a></li>
-                <li><a href="#" class="footer-link">Payment Methods</a></li>
-            </ul>
-        </div>
-        <div class="footer-icon-bloc">
-            <a href="#"><img class="footer-icon" src="{% static '/img/icons/instagram.webp' %}" alt="intagram_logo"></a>
-            <a href="#"><img class="footer-icon" src="{% static '/img/icons/facebook.webp' %}" alt="facebook_logo"></a>
-            <a href="#"><img class="footer-icon" src="{% static '/img/icons/pinterest.webp' %}" alt="pinterest_logo"></a>
-            <a href="#"><img class="footer-icon" src="{% static '/img/icons/youtube.webp' %}" alt="youtube_logo"></a>
-        </div>
-    </div>
-
-    <!-- Copyright bloc -->
-    <div class="copyright">
-        <span>© 2023 by Lampovo | Design & Development by SkyDev | Powered on Django</span>
-    </div>
-</footer>
+    </footer>
+</div>
 <script src="{% static '/bootstrap/js/bootstrap.min.js' %}"></script>
 <script src="https://kit.fontawesome.com/9984184d83.js" crossorigin="anonymous"></script>
 </body>

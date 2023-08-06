@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-    Lampovo - Main
+Lampovo - Main
 {% endblock title %}
 
 {% block name %}
@@ -10,127 +10,144 @@
 {% endblock name %}
 
 {% block container %}
-    <!-- Carusel bloc -->
-    <div class="container">
-        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-                        aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                        aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                        aria-label="Slide 3"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"
-                        aria-label="Slide 4"></button>
-            </div>
-            <div class="carousel-inner">
-                <div class="carousel-item active" data-bs-interval="4000">
-                    <img src="{% static '/img/1.jpg' %}" class="d-bloc w-100" alt="item1">
-                </div>
-                <div class="carousel-item" data-bs-interval="4000">
-                    <img src="{% static '/img/3.jpg' %}" class="d-bloc w-100" alt="item2">
-                </div>
-                <div class="carousel-item" data-bs-interval="4000">
-                    <img src="{% static '/img/2.jpg' %}" class="d-bloc w-100" alt="item3">
-                </div>
-                <div class="carousel-item" data-bs-interval="4000">
-                    <img src="{% static '/img/4.jpg' %}" class="d-bloc w-100" alt="item4">
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- Title line -->
-    <div class="container">
-        <div class="col line">LAMPOVO IS</div>
+<!-- Main bloc -->
+<!-- Logo -->
+<div class="container" style="background-color: white; height: 80px;">
+    <div class="row">
+        <div class="col logo-style">Lampovo</div>
     </div>
+</div>
 
-    <!-- Lampovo is... bloc -->
-    <div class="container mt-4 mb-5" style="width: 98%;">
-        <div class="card-group mt-3 m-auto">
-            <div class="card is-bloc">
-                <div class="card-body">
-                    <h5 class="card-title">High Quality Sound</h5>
-                    <br>
-                    <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati vero et
-                        laborum itaque vel expedita?</p>
-                </div>
+<!-- Navbar -->
+<div class="container mb-4">
+    <div class="row justify-content-around">
+        <div class="col col-12 col-md-3 col-lg-2"><a href="#shop" class="nav-style">SHOP</a></div>
+        <div class="col col-12 col-md-3 col-lg-2"><a href="#about" class="nav-style">ABOUT</a></div>
+        <div class="col col-12 col-md-3 col-lg-2"><a href="#delivery" class="nav-style">DELIVERY</a></div>
+        <div class="col col-12 col-md-3 col-lg-2"><a href="#contact" class="nav-style">CONTACT</a></div>
+    </div>
+</div>
+<!-- Carusel bloc -->
+<div class="container">
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"
+                    aria-label="Slide 4"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="4000">
+                <img src="{% static '/img/1.jpg' %}" class="d-bloc w-100" alt="item1">
             </div>
-            <div class="card is-bloc">
-                <div class="card-body">
-                    <h5 class="card-title">Perfect Look</h5>
-                    <br>
-                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Error recusandae
-                        reprehenderit quo!</p>
-                </div>
+            <div class="carousel-item" data-bs-interval="4000">
+                <img src="{% static '/img/3.jpg' %}" class="d-bloc w-100" alt="item2">
             </div>
-            <div class="card is-bloc">
-                <div class="card-body">
-                    <h5 class="card-title">Nice Price</h5>
-                    <br>
-                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio sint obcaecati
-                        eligendi dicta saepe magnam ducimus aperiam enim.</p>
-                </div>
+            <div class="carousel-item" data-bs-interval="4000">
+                <img src="{% static '/img/2.jpg' %}" class="d-bloc w-100" alt="item3">
             </div>
-            <div class="card is-bloc">
-                <div class="card-body">
-                    <h5 class="card-title">Eco Materials</h5>
-                    <br>
-                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam unde reiciendis
-                        voluptate quod dicta nesciunt perspiciatis.</p>
-                </div>
+            <div class="carousel-item" data-bs-interval="4000">
+                <img src="{% static '/img/4.jpg' %}" class="d-bloc w-100" alt="item4">
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Title line -->
-    <div class="container">
-        <div class="col line">RECOMMEND ITEMS</div>
-    </div>
+<!-- Title line -->
+<div class="container">
+    <div class="col line">LAMPOVO IS</div>
+</div>
 
-    <!-- Recommend items bloc -->
-    <div class="row row-cols-1 row-cols-md-3 g-4 m-auto mb-5" style="width: 95%;">
-        <div class="col">
-            <div class="card h-100 card-style">
-                <img src="{% static '/img/amp.jpeg' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Power amp ASP-01</h5>
-                    <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi repudiandae
-                        magnam, magni expedita ea fugit quaerat vel error! Velit accusantium at odit quae error
-                        quas?</p>
-                </div>
-                <div class="card-footer" style="background-color: white; border: 0;">
-                    <a href="#" class="btn card-btn-style"><h5 style="margin: 0;">View in shop</h5></a>
-                </div>
+<!-- Lampovo is... bloc -->
+<div class="container mt-4 mb-5" style="width: 90%;">
+    <div class="card-group mt-3 m-auto">
+        <div class="card is-bloc">
+            <div class="card-body">
+                <h5 class="card-title">High Quality Sound</h5>
+                <br>
+                <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati vero et
+                    laborum itaque vel expedita?</p>
             </div>
         </div>
-        <div class="col">
-            <div class="card h-100 card-style">
-                <img src="{% static '/img/riaa.jpeg' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">RIAA Corrector</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi eligendi natus
-                        soluta similique labore blanditiis enim quasi numquam rem, facilis inventore sed, odit
-                        perspiciatis provident corrupti molestias sapiente earum vitae!</p>
-                </div>
-                <div class="card-footer" style="background-color: white; border: 0;">
-                    <a href="#" class="btn card-btn-style"><h5 style="margin: 0;">View in shop</h5></a>
-                </div>
+        <div class="card is-bloc">
+            <div class="card-body">
+                <h5 class="card-title">Perfect Look</h5>
+                <br>
+                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Error recusandae
+                    reprehenderit quo!</p>
             </div>
         </div>
-        <div class="col">
-            <div class="card h-100 card-style">
-                <img src="{% static '/img/cables.jpeg' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Phono/RCA cables</h5>
-                    <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi esse quis ab
-                        architecto sint sunt officia aspernatur recusandae quae animi.</p>
-                </div>
-                <div class="card-footer" style="background-color: white; border: 0;">
-                    <a href="#" class="btn card-btn-style"><h5 style="margin: 0;">View in shop</h5></a>
-                </div>
+        <div class="card is-bloc">
+            <div class="card-body">
+                <h5 class="card-title">Nice Price</h5>
+                <br>
+                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio sint obcaecati
+                    eligendi dicta saepe magnam ducimus aperiam enim.</p>
+            </div>
+        </div>
+        <div class="card is-bloc">
+            <div class="card-body">
+                <h5 class="card-title">Eco Materials</h5>
+                <br>
+                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam unde reiciendis
+                    voluptate quod dicta nesciunt perspiciatis.</p>
             </div>
         </div>
     </div>
-</main>
+</div>
+
+<!-- Title line -->
+<div class="container">
+    <div class="col line">RECOMMEND ITEMS</div>
+</div>
+
+<!-- Recommend items bloc -->
+<div class="row row-cols-1 row-cols-md-3 g-4 m-auto mb-5" style="width: 80%;">
+    <div class="col">
+        <div class="card h-100 card-style">
+            <img src="{% static '/img/amp.jpeg' %}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Power amp ASP-01</h5>
+                <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi repudiandae
+                    magnam, magni expedita ea fugit quaerat vel error! Velit accusantium at odit quae error
+                    quas?</p>
+            </div>
+            <div class="card-footer" style="background-color: white; border: 0;">
+                <a href="#" class="btn card-btn-style"><h5 style="margin: 0;">View in shop</h5></a>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100 card-style">
+            <img src="{% static '/img/riaa.jpeg' %}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">RIAA Corrector</h5>
+                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi eligendi natus
+                    soluta similique labore blanditiis enim quasi numquam rem, facilis inventore sed, odit
+                    perspiciatis provident corrupti molestias sapiente earum vitae!</p>
+            </div>
+            <div class="card-footer" style="background-color: white; border: 0;">
+                <a href="#" class="btn card-btn-style"><h5 style="margin: 0;">View in shop</h5></a>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100 card-style">
+            <img src="{% static '/img/cables.jpeg' %}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Phono/RCA cables</h5>
+                <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi esse quis ab
+                    architecto sint sunt officia aspernatur recusandae quae animi.</p>
+            </div>
+            <div class="card-footer" style="background-color: white; border: 0;">
+                <a href="#" class="btn card-btn-style"><h5 style="margin: 0;">View in shop</h5></a>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock container %}
