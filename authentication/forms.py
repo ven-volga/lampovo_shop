@@ -1,35 +1,24 @@
 from django import forms
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+from django.contrib.auth.forms import UserCreationForm
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
+
+User = get_user_model()
 
 
-class LoginForm(forms.Form):
-    username = forms.CharField()
-    password = forms.CharField(widget=forms.PasswordInput())
+class RegisterUserForm(UserCreationForm):
+    email = forms.EmailField(
+        label=_("Email"),
+        max_length=254,
+        widget=forms.EmailInput(attrs={"autocomplete": "email"}),
+    )
 
-    def clean(self):
-        cleaned_data = super().clean()
-        username = cleaned_data.get('username')
-        password = cleaned_data.get('password')
-
-        try:
-            self.user = User.objects.get(username=username)
-        except User.DoesNotExist:
-            raise forms.ValidationError(f'The user with name "{username}" does not exist!')
-
-        if not self.user.check_password(password):
-            raise forms.ValidationError(f'Password for user "{username}" is not correct!')
-
-
-class RegisterForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['email'].required = True
-        for visible in self.visible_fields():
-            visible.field.widget.attrs['class'] = 'form-input'
-
-    class Meta:
+    class Meta(UserCreationForm.Meta):
         model = User
-        fields = ('username', 'first_name', 'last_name', 'email', 'password')
-        widgets = {
-            'password': forms.PasswordInput(),
-        }
+        fields = ("email", "username")
+
+    def clean_username(self):
+        username = self.cleaned_data.get("username").capitalize()
+        return username
+

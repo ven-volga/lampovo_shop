@@ -40,6 +40,47 @@ a {
     text-decoration: none;
 }
 
+input {
+    color: rgb(46, 48, 47);
+    border: 1px solid rgb(46, 48, 47);
+    border-radius: 2px;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 200;
+}
+
+input:focus {
+    color: rgb(46, 48, 47);
+    background-color: white;
+    border-color: rgb(46, 48, 47);
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(111, 111, 111, 0.25);
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover, 
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+    -webkit-text-fill-color: rgb(60, 60, 60);
+    -webkit-box-shadow: 0 0 0px 1000px whitesmoke inset;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+
+.custom-btn {
+    background-color: white;
+    color: rgb(46, 48, 47);
+    border-radius: 3px;
+}
+.custom-btn:hover {
+    background-color: rgb(46, 48, 47);
+    color: white;
+}
+
 .head-style {
     color: rgb(46, 48, 47);
     font-size: 24px;
@@ -156,14 +197,13 @@ a {
 }
 
 .card-btn-style {
-    background-color: whitesmoke;
+    background-color: white;
     border: 1px solid rgb(46, 48, 47);
     border-radius: 2px;
     color: rgb(46, 48, 47);
 }
 .card-btn-style:hover {
     background-color: rgb(46, 48, 47);
-    border: 1px solid rgb(46, 48, 47);
     border-radius: 2px;
     color: whitesmoke;
     transition: 0.2s linear;

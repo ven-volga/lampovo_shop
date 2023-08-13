@@ -1,0 +1,41 @@
+{% extends 'base_page.html' %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static '/style.css' %}">{% endblock style %}
+{% block title %}
+Register - Lampovo
+{% endblock title %}
+
+{% block name %}
+<a href="{% url 'main_page'%}" style="color: rgb(46, 48, 47);">Lampovo</a>
+{% endblock name %}
+
+{% block container %}
+<div class="content-bloc mb-3">
+    <!-- Register form -->
+    <br>
+    <h1>Register</h1>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <form method="post" action="{% url 'register' %}">
+                    {% csrf_token %}
+                    {% for field in register_form %}
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-3">
+                                {{ field.errors }}
+                                {{ field.label_tag }}
+                                <p>{{ field }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <button type="submit" class=" btn btn-outline-dark custom-btn">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock container %}
