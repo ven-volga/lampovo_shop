@@ -75,6 +75,7 @@ input:focus {
     background-color: white;
     color: rgb(46, 48, 47);
     border-radius: 3px;
+    margin-bottom: 20px;
 }
 .custom-btn:hover {
     background-color: rgb(46, 48, 47);
@@ -285,13 +286,13 @@ li {
 .page-wrapper {
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Мінімальна висота контейнера на весь екран */
+    min-height: 100vh;
 }
 
 .wrapper {
-    flex: 1; /* Розтягуємо main на весь залишок доступної висоти */
+    flex: 1;
 }
 
 footer {
-    margin-top: auto; /* Прижимаємо футер до низу екрану */
+    margin-top: auto;
 }
