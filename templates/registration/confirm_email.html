@@ -1,0 +1,27 @@
+{% extends 'base_page.html' %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static '/style.css' %}">{% endblock style %}
+{% block title %}
+Email confirmation - Lampovo
+{% endblock title %}
+
+{% block name %}
+<a href="{% url 'main_page'%}" style="color: rgb(46, 48, 47);">Lampovo</a>
+{% endblock name %}
+
+{% block container %}
+<div class="content-bloc" style="border-top: 1px solid rgb(46, 48, 47); text-align: center;">
+    <!-- Password reset form -->
+    <br>
+    <h3>Please, confirm your email.</h3>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 m-auto">
+                <p>Check your mailbox to confirm email!</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock container %}

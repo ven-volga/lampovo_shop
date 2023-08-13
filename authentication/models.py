@@ -25,5 +25,7 @@ class User(AbstractUser):
         validators=[username_validator],
     )
 
+    email_verify = models.BooleanField(default=False)
+
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["username"]
