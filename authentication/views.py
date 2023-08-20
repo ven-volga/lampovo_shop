@@ -68,6 +68,10 @@ class RegisterUserView(View):
 
 class UserPageView(View):
     template_name = 'registration/user.html'
+    template_redirect = 'registration/login.html'
 
     def get(self, request):
-        return render(request, self.template_name)
+        if request.user.is_authenticated:
+            return render(request, self.template_name)
+        else:
+            return render(request, self.template_redirect)

@@ -19,6 +19,16 @@
     <div class="container">
         <div class="row">
             <div class="col">
+                <span>{{ user.username }}</span><br>
+                <span>{{ user.password }}</span><br>
+                <span>{{ user.email }}</span><br>
+                <span>{{ user.first_name }}</span><br>
+                <span>{{ user.last_name }}</span><br>
+                <span>{{ user.email_verify }}</span><br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
                 <a href="{% url 'logout' %}">Log out</a>
             </div>
         </div>
