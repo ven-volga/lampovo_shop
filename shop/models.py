@@ -1,4 +1,7 @@
+import os
+
 from django.db import models
+from django.urls import reverse
 
 
 class Category(models.Model):
@@ -22,6 +25,9 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolut_url(self):
+        return reverse('product_list_by_category', args=[self.slug])
+
 
 class Product(models.Model):
     COLOR_CHOICES = [
@@ -33,6 +39,7 @@ class Product(models.Model):
     category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)
     name = models.CharField(max_length=100, db_index=True)
     slug = models.CharField(max_length=100, db_index=True, unique=True)
+    main_image = models.ImageField(upload_to=f'products/main_image/', blank=True)
     description = models.TextField(max_length=1500, blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     available = models.BooleanField(default=True)
@@ -50,11 +57,18 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse('product_detail', args=[self.id, self.slug])
+
 
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
 
     def image_upload_path(self, filename):
-        return f'product_data/{self.product.slug}/{filename}'
+        return f'products/{self.product.slug}/{filename}'
 
     image = models.ImageField(upload_to=image_upload_path, blank=True)
+
+    def get_absolute_path(self):
+        return f'products/{self.product.slug}/'
+

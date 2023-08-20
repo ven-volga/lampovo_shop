@@ -197,6 +197,15 @@ input:focus {
     font-style: normal;
 }
 
+.shop-card {
+    color: rgb(40, 40, 40);
+    border: 1px solid rgb(192, 192, 192);
+    border-radius: 3px;
+    font-family: 'Artegra Sans Extended Alt';
+    font-weight: 200;
+    font-style: normal;
+}
+
 .card-btn-style {
     background-color: white;
     border: 1px solid rgb(46, 48, 47);

@@ -1,0 +1,41 @@
+{% extends 'base_page.html' %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static '/style.css' %}">{% endblock style %}
+{% block title %}
+Shop - Lampovo
+{% endblock title %}
+
+{% block name %}
+<a href="{% url 'main_page'%}" style="color: rgb(46, 48, 47);">Lampovo</a>
+{% endblock name %}
+
+{% block container %}
+<div class="content-bloc" style="border-top: 1px solid rgb(46, 48, 47); text-align: center;">
+    <br>
+    <h1>Lampovo shop</h1>
+    <br>
+</div>
+<div class="container mb-5">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for product in products %}
+        <div class="col d-flex">
+            <div class="card flex-column shop-card">
+                <img src="{{ product.main_image.url }}" alt="{{ product.name }}" class="card-img-top">
+                <div class="card-body flex-column">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">{{ product.description }}</p>
+                </div>
+                <div class="card-footer" style="background-color: white; border: 0; margin-bottom: 10px;">
+                    <h5 class="card-title mb-3">Price: {{ product.price }}$</h5>
+                    <div>
+                        <a href="{{ product.get_absolute_url }}" class="btn card-btn-style"><h5 style="margin: 0;">View details</h5></a>
+                        <a href="#" class="btn card-btn-style ms-2"><h5 style="margin: 0;">Add to cart</h5></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock container %}
