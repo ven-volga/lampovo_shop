@@ -4,3 +4,4 @@ __pycache__/
 main/migrations/
 db.sqlite3
 product_data/
+media/
