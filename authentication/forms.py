@@ -9,26 +9,55 @@ from authentication.utils import send_verify_email
 User = get_user_model()
 
 
+# class UserAuthenticationForm(AuthenticationForm):
+#     def clean(self):
+#         username = self.cleaned_data.get('username')
+#         password = self.cleaned_data.get('password')
+#
+#         if username is not None and password:
+#             self.user_cache = authenticate(
+#                 self.request,
+#                 username=username,
+#                 password=password,
+#             )
+#             if not self.user_cache.email_verify:
+#                 send_verify_email(self.request, self.user_cache)
+#                 raise ValidationError(
+#                     'Email not verify, check your mailbox',
+#                     code='invalid_login'
+#                 )
+#
+#             if self.user_cache is None:
+#                 raise self.get_invalid_login_error()
+#             else:
+#                 self.confirm_login_allowed(self.user_cache)
+#
+#         return self.cleaned_data
+
+
 class UserAuthenticationForm(AuthenticationForm):
     def clean(self):
-        username = self.cleaned_data.get("username")
-        password = self.cleaned_data.get("password")
+        username = self.cleaned_data.get('username')
+        password = self.cleaned_data.get('password')
 
         if username is not None and password:
             self.user_cache = authenticate(
-                self.request, username=username, password=password
+                self.request,
+                username=username,
+                password=password,
             )
+
+            if self.user_cache is None:
+                raise self.get_invalid_login_error()
+
             if not self.user_cache.email_verify:
                 send_verify_email(self.request, self.user_cache)
                 raise ValidationError(
-                    'Email not verify, check your mailbox',
+                    'Email not verified, check your mailbox',
                     code='invalid_login'
-
                 )
-            if self.user_cache is None:
-                raise self.get_invalid_login_error()
-            else:
-                self.confirm_login_allowed(self.user_cache)
+
+            self.confirm_login_allowed(self.user_cache)
 
         return self.cleaned_data
 

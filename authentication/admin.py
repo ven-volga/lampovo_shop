@@ -18,4 +18,7 @@ class UserAdmin(DjangoUserAdmin):
          ),
     )
 
+    list_display = ("email", "username", "first_name", "last_name", "email_verify", "is_staff")
+    list_editable = ()
+
     add_form = RegisterUserForm

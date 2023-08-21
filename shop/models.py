@@ -21,7 +21,7 @@ class Category(models.Model):
         verbose_name_plural = 'Categories'
 
     def __str__(self):
-        return self.name
+        return dict(self.PRODUCTS_CATEGORY_CHOICES)[self.name]
 
     def get_absolut_url(self):
         return reverse('product_list_by_category', args=[self.slug])
@@ -75,5 +75,3 @@ class ProductImage(models.Model):
 
     def get_absolute_path(self):
         return f'products/{self.product.slug}/'
-
-

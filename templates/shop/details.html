@@ -19,57 +19,64 @@ Shop - Lampovo
 <div class="container mt-5 mb-5">
     <div class="row d-flex justify-content-center">
         <div class="col-md-12">
-            <div class="card">
+            <div class="product-details">
                 <div class="row">
+                    <!-- Carousel product photos -->
                     <div class="col-md-6">
-                        <div id="carouselExample" class="carousel slide">
+                        <div id="carouselProductPhotos" class="carousel slide">
                             <div class="carousel-inner">
                                 {% for image in product_detail.images.all %}
-                                <div class="carousel-item active">
-                                    <img src="{{ image.image.url }}" class="d-block w-100" alt="...">
-                                </div>
+                                    <div class="carousel-item{% if forloop.first %} active{% endif %}">
+                                        <img src="{{ image.image.url }}" class="d-block w-100" alt="{{ product_detail.name }}">
+                                    </div>
                                 {% endfor %}
                             </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselProductPhotos"
                                     data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="carousel-control-prev-icon" aria-hidden="false"></span>
                                 <span class="visually-hidden">Previous</span>
                             </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselProductPhotos"
                                     data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="carousel-control-next-icon" aria-hidden="false"></span>
                                 <span class="visually-hidden">Next</span>
                             </button>
                         </div>
                     </div>
+                    <!-- End carousel -->
+
+                    <!-- Product details block -->
                     <div class="col-md-6">
                         <div class="product p-4">
                             <div class="d-flex justify-content-between align-items-center">
-                                <div class="d-flex align-items-center"><i class="fa fa-long-arrow-left"></i>
-                                    <span class="ml-1"> Back to shop</span>
+                                <div class="d-flex align-items-center">
+                                    <span class="ml-1">
+                                        <a href="{% url 'product_list' %}" style="color: rgb(120, 120, 120);">&larr; Back to shop</a>
+                                    </span>
                                 </div>
                             </div>
-                            <div class="mt-4 mb-3"><span class="text-uppercase text-muted brand">{{ product. }}</span>
-                                <h5 class="text-uppercase">Men's slim fit t-shirt</h5>
-                                <div class="price d-flex flex-row align-items-center"><span class="act-price">$20</span>
-                                    <div class="ml-2"><small class="dis-price">$59</small> <span>40% OFF</span></div>
+                            <div class="mt-4 mb-3"><span class="text-muted">Category: {{ product_detail.category }}</span>
+                                {% comment %} <h4 class="mt-3">{{ product_detail.name }}</h4> {% endcomment %}
+                                <div class="price d-flex flex-row align-items-center">
+                                    <div class="ml-2 mt-4"><h5>Price: {{ product_detail.price }}$</h5></div>
                                 </div>
                             </div>
-                            <p class="about">Shop from a wide range of t-shirt from orianz. Pefect for your everyday
-                                use, you could pair it with a stylish pair of jeans or trousers complete the look.</p>
+                            <p class="about">{{ product_detail.description }}</p>
                             <div class="sizes mt-5">
-                                <h6 class="text-uppercase">Size</h6> <label class="radio"> <input type="radio"
-                                                                                                  name="size" value="S"
-                                                                                                  checked>
-                                <span>S</span> </label> <label class="radio"> <input type="radio" name="size" value="M">
-                                <span>M</span> </label> <label class="radio"> <input type="radio" name="size" value="L">
-                                <span>L</span> </label> <label class="radio"> <input type="radio" name="size"
-                                                                                     value="XL"> <span>XL</span>
-                            </label> <label class="radio"> <input type="radio" name="size" value="XXL"> <span>XXL</span>
-                            </label>
+                                {% if product_detail.category.name != "cb" %}
+                                    <h6 class="text-uppercase">Color:</h6>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="color" id="color_dark" checked>
+                                        <label class="form-check-label" for="color_dark">Dark wood</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="color" id="color_light">
+                                        <label class="form-check-label" for="color_light">Light wood</label>
+                                    </div>
+                                {% endif %}
                             </div>
                             <div class="cart mt-4 align-items-center">
-                                <button class="btn btn-danger text-uppercase mr-2 px-4">Add to cart</button>
+                                <button class="btn btn-dark text-uppercase mr-2 px-4">Add to cart</button>
                                 <i class="fa fa-heart text-muted"></i> <i class="fa fa-share-alt text-muted"></i></div>
                         </div>
                     </div>
@@ -78,5 +85,19 @@ Shop - Lampovo
         </div>
     </div>
 </div>
-
+<!-- Title line -->
+<div class="container">
+    <div class="col line text-uppercase">Specifications</div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <br>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis maiores neque reprehenderit quae ut ea necessitatibus debitis, omnis voluptatum culpa perferendis, at sit sapiente repudiandae voluptate unde consequuntur inventore iste quia excepturi modi quas quod temporibus earum? Pariatur autem repudiandae sapiente. Eius repellat ratione eum error, blanditiis ipsam libero voluptate id tenetur est tempore perferendis, vel necessitatibus autem, perspiciatis beatae dolorem maxime assumenda! Error, sed? Voluptas asperiores fugit neque inventore nihil cumque, doloremque, nesciunt totam dignissimos esse dolor enim ad accusamus sint quasi pariatur facere, veniam blanditiis quos harum tempore repellendus. Necessitatibus veniam officiis aliquid quidem quas quisquam iste illum eum aut ipsa natus quos modi commodi, cum dicta omnis facilis ducimus accusamus ipsum voluptatibus. Quidem voluptatem, omnis nobis saepe labore ullam ex, rem corrupti, sapiente earum tenetur! Praesentium in velit delectus atque officiis eaque deserunt nihil aliquid qui magni earum nesciunt at officia nostrum cumque iure debitis explicabo, facilis vel asperiores voluptate! Omnis natus autem aliquam perspiciatis nostrum delectus quam, quibusdam sit quis repellat, ea vero vel ut dolorum deserunt magni quia ex quaerat vitae tempore sed est beatae? Adipisci fugiat doloribus doloremque ducimus id magni. Aut quas, suscipit libero rerum eaque ipsa aperiam id deleniti repudiandae quis dolore repellendus vero nemo enim delectus blanditiis illo praesentium quaerat animi magni? Deleniti eum, quo veritatis molestiae aut officiis sit! Iure commodi repellat totam obcaecati deserunt accusamus natus id sint a aliquam, fugit atque vitae numquam fuga neque vero cupiditate eligendi aut quidem cum itaque? Dignissimos asperiores accusantium vero cum corrupti laborum reiciendis veritatis. Repudiandae, sint! Assumenda mollitia molestiae voluptatibus harum debitis! Dolores asperiores amet quam accusamus ad? Nihil exercitationem obcaecati architecto recusandae sint rem commodi iusto quisquam. Sapiente officiis perspiciatis consequatur magni ea! Ad, soluta. Consectetur, culpa aliquid. Expedita culpa eius blanditiis amet debitis. Magni saepe consequatur unde eaque adipisci reprehenderit minima neque itaque nam tempora at dolore consectetur vel obcaecati voluptatum cumque eligendi a modi, sit tenetur, vitae aut. Quas, quia at soluta pariatur nulla dicta autem! Minima et laboriosam delectus culpa dicta quas ea iure voluptas eius tenetur. Explicabo molestiae expedita tempora reiciendis nulla inventore perspiciatis autem culpa libero, cum a, cumque voluptatem repudiandae tenetur vitae. Culpa illo sunt beatae in aliquam, non iusto illum doloremque ab quibusdam, dicta voluptas cupiditate nostrum rem tenetur neque molestiae optio! Minima ipsa obcaecati mollitia veniam iusto repellendus quisquam fuga omnis? Vitae incidunt consequatur quidem expedita distinctio eius dolorem hic porro, eos illum neque labore quaerat aperiam cupiditate eligendi, deleniti autem perspiciatis ex eveniet laboriosam quam! Necessitatibus officiis quaerat nam at hic cumque iste earum, facilis eos cupiditate, iusto dolorem, inventore eius nesciunt vero maxime laboriosam. Repellat consequatur quasi fugiat rerum quod beatae laudantium nihil veniam, repellendus voluptatibus quas quidem, sunt corrupti.
+            <br>
+            <br>
+            <br>
+        </div>
+    </div>
+</div>
 {% endblock container %}
