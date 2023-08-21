@@ -1,5 +1,3 @@
-import os
-
 from django.db import models
 from django.urls import reverse
 
@@ -47,6 +45,7 @@ class Product(models.Model):
     updated = models.DateTimeField(auto_now=True)
     color = models.CharField(max_length=2, choices=COLOR_CHOICES, default='nc')
     customize = models.BooleanField(default=False)
+    is_recommend = models.BooleanField(default=False)
 
     class Meta:
         ordering = ('name',)

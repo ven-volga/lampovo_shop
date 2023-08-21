@@ -31,8 +31,6 @@ class ProductDetailView(View):
     def get(self, request, id, slug):
         product = get_object_or_404(Product, id=id, slug=slug, available=True)
         context = {
-            'product': product,
+            'product_detail': product,
         }
         return render(request, self.template_name, context)
-
-

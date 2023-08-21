@@ -105,49 +105,26 @@ Lampovo - Main
 <div class="container">
     <div class="col line">RECOMMEND ITEMS</div>
 </div>
-
 <!-- Recommend items bloc -->
-<div class="row row-cols-1 row-cols-md-3 g-4 m-auto mb-5" style="width: 85%;">
-    <div class="col">
-        <div class="card h-100 card-style">
-            <img src="{% static '/img/amp.jpeg' %}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Power amp ASP-01</h5>
-                <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi repudiandae
-                    magnam, magni expedita ea fugit quaerat vel error! Velit accusantium at odit quae error
-                    quas</p>
-            </div>
-            <div class="card-footer" style="background-color: white; border: 0;">
-                <a href="#" class="btn card-btn-style"><h5 style="margin: 0;">View in shop</h5></a>
-            </div>
-        </div>
-    </div>
-    <div class="col">
-        <div class="card h-100 card-style">
-            <img src="{% static '/img/riaa.jpeg' %}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">RIAA Corrector</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi eligendi natus
-                    soluta similique labore blanditiis enim quasi numquam rem, facilis inventore sed, odit
-                    perspiciatis provident corrupti molestias sapiente earum vitae!</p>
-            </div>
-            <div class="card-footer" style="background-color: white; border: 0;">
-                <a href="#" class="btn card-btn-style"><h5 style="margin: 0;">View in shop</h5></a>
+<div class="container mb-5" style="width: 90%;">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for product in recommend_products %}
+        <div class="col d-flex">
+            <div class="card flex-column card-style">
+                <img src="{{ product.main_image.url }}" alt="{{ product.name }}" class="card-img-top">
+                <div class="card-body flex-column">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">{{ product.description }}</p>
+                </div>
+                <div class="card-footer" style="background-color: white; border: 0; margin-bottom: 10px;">
+                    <h6 class="card-title mb-3">Price: {{ product.price }}$</h6>
+                    <div>
+                        <a href="{{ product.get_absolute_url }}" class="btn card-btn-style"><h5 style="margin: 0;">View details</h5></a>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="col">
-        <div class="card h-100 card-style">
-            <img src="{% static '/img/cables.jpeg' %}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Phono/RCA cables</h5>
-                <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi esse quis ab
-                    architecto sint sunt officia aspernatur recusandae quae animi.</p>
-            </div>
-            <div class="card-footer" style="background-color: white; border: 0;">
-                <a href="#" class="btn card-btn-style"><h5 style="margin: 0;">View in shop</h5></a>
-            </div>
-        </div>
+        {% endfor %}
     </div>
 </div>
 {% endblock container %}
