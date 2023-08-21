@@ -61,7 +61,12 @@ class Product(models.Model):
 
 
 class ProductImage(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, related_name='images', on_delete=models.CASCADE)
+
+    class Meta:
+        ordering = ('id',)
+        verbose_name = 'Product image'
+        verbose_name_plural = 'Product images'
 
     def image_upload_path(self, filename):
         return f'products/{self.product.slug}/{filename}'
@@ -70,4 +75,5 @@ class ProductImage(models.Model):
 
     def get_absolute_path(self):
         return f'products/{self.product.slug}/'
+
 
