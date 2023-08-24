@@ -246,6 +246,18 @@ input:focus {
     font-style: normal;
 }
 
+.form-check-input:checked {
+    background-color: rgb(46, 48, 47);
+    border-color: rgb(46, 48, 47);
+    box-shadow: 0 0 0 1px rgb(46, 48, 47), 0 0 0 0.02rem rgba(39, 39, 39, 0.5);
+}
+
+.form-check-input:active {
+    background-color: lightgray;
+    border-color: lightgray;
+    box-shadow: 0 0 0 1px lightgray, 0 0 0 0.1rem rgba(128, 128, 128, 0.5);
+}
+
 footer {
     background-color: rgb(46, 48, 47);
 }

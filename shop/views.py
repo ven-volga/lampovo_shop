@@ -5,7 +5,7 @@ from shop.models import Category, Product
 
 
 class ProductListView(View):
-    template_name = 'shop/main.html'
+    template_name = 'shop/shop.html'
 
     def get(self, request, category_slug=None):
         category = None
