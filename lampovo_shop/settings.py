@@ -24,6 +24,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 TEMPLATES_DIRS = os.path.join(BASE_DIR, 'templates')
 
 
+CART_SESSION_ID = 'cart'
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
