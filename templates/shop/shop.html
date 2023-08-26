@@ -28,9 +28,16 @@ Shop - Lampovo
                 </div>
                 <div class="card-footer" style="background-color: white; border: 0; margin-bottom: 10px;">
                     <h5 class="card-title mb-1">Price: {{ product.price }}$</h5>
-                    <div>
-                        <a href="{{ product.get_absolute_url }}" class="btn card-btn-style ms-auto mt-2"><h5 style="margin: 0;">View details</h5></a>
-                        <a href="#" class="btn card-btn-style ms-auto mt-2"><h5 style="margin: 0;">Add to cart</h5></a>
+                    <div class="d-flex justify-content-around" style="flex-wrap: wrap;">
+                        <a href="{{ product.get_absolute_url }}" class="btn card-btn-style mt-2"><h5 style="margin: 0;">View details</h5></a>                        
+                        <form method="post" action="{% url 'cart:cart_add' product.id %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="quantity" value="1">
+                            <button type="submit" class="btn card-btn-style mt-2">
+                                <h5 style="margin: 0;">Add to cart</h5>
+                            </button>
+                        </form>
+                        
                     </div>
                 </div>
             </div>

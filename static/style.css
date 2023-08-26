@@ -38,6 +38,7 @@ html, body {
 
 a {
     text-decoration: none;
+    color: rgb(46, 48, 47);
 }
 
 input {
@@ -217,11 +218,22 @@ input:focus {
     border-radius: 2px;
     color: rgb(46, 48, 47);
 }
+
 .card-btn-style:hover {
     background-color: rgb(46, 48, 47);
     border-radius: 2px;
     color: whitesmoke;
     transition: 0.2s linear;
+}
+
+.card-btn-style:active {
+    background-color: rgb(46, 48, 47) !important;
+    border: 1px solid rgb(46, 48, 47) !important;
+    border-radius: 2px !important;
+    color: whitesmoke !important;
+    transition: 0.2s linear !important;
+    box-shadow: 0 0 0 1px lightgray, 0 0 0 0.10rem rgba(128, 128, 128, 0.8) !important;
+    transition: 0.3s linear !important;
 }
 
 .is-bloc {
@@ -256,6 +268,67 @@ input:focus {
     background-color: lightgray;
     border-color: lightgray;
     box-shadow: 0 0 0 1px lightgray, 0 0 0 0.1rem rgba(128, 128, 128, 0.5);
+}
+
+.cart-container {
+    font-family: 'Artegra Sans Extended Alt';
+    font-weight: 200;
+    font-style: normal;
+    color: rgb(46, 48, 47);
+
+}
+
+.form-control {
+    border-radius: 3px;
+}
+
+.form-control:focus {
+    border-color: rgb(100, 100, 100);
+    box-shadow: 0 0 0 3px lightgray, 0 0 0 0.2rem rgba(128, 128, 128, 0.8);
+}
+
+.btn-white {
+    background-color: white;
+}
+
+.btn-white:hover {
+    background-color: rgb(46, 48, 47);
+    color: white;
+    transition: 0.3s linear;
+}
+
+.btn-white:active {
+    background-color: rgb(46, 48, 47) !important;
+    color: white !important;
+    transition: 0.3s linear !important;
+}
+
+.back-link {
+    color: rgb(100, 100, 100);
+}
+
+.back-link:hover {
+    color: rgb(46, 48, 47);
+    transition: 0.3s linear;
+}
+
+.btn-primary {
+    background-color: rgb(46, 48, 47);
+    border: 1px solid black;
+}
+
+.btn-primary:hover {
+    background-color: rgb(20, 20, 20);
+    border: 1px solid rgb(46, 48, 47);
+    box-shadow: 0 0 0 1px lightgray, 0 0 0 0.10rem rgba(128, 128, 128, 0.8);
+    transition: 0.3s linear;
+}
+
+.btn-primary:active {
+    background-color: black !important;
+    border: 1px solid rgb(46, 48, 47) !important;
+    box-shadow: 0 0 0 2px lightgray, 0 0 0 0.15rem rgba(128, 128, 128, 0.8) !important;
+    transition: 0.3s linear !important;
 }
 
 footer {

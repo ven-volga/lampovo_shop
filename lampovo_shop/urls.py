@@ -22,6 +22,7 @@ from lampovo_shop import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('cart/', include('cart.urls')),
     path('', include('main.urls')),
     path('users/', include('authentication.urls')),
     path('shop/', include('shop.urls')),

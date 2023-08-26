@@ -56,11 +56,19 @@
                             </div>
                         </div>
 
-                        {% comment %} Card button {% endcomment %}
+                        <!-- Cart button --> 
                         <div class="pe-2 pe-md-4 align-self-center">
-                            <a href="#cart">
+                            <a href="{% url 'cart:cart_detail' %}">
                                 <i class="fa-solid fa-cart-shopping icon-style"></i>
-                                <span class="user-style">0</span>
+                                <span class="user-style">
+                                    {% with total_items=cart|length %}
+                                    {% if cart|length > 0 %}
+                                    {{ total_items }}
+                                    {% else %}
+                                    0
+                                    {% endif %}
+                                    {% endwith %}
+                                </span>
                             </a>
                         </div>
                     </div>
@@ -82,7 +90,7 @@
         <div class="footer-style">
             <div class="link-bloc">
                 <ul>
-                    <li><a href="#" class="footer-link">Shop</a></li>
+                    <li><a href="{% url 'product_list' %}" class="footer-link">Shop</a></li>
                     <li><a href="#" class="footer-link">About us</a></li>
                     <li><a href="#" class="footer-link">Contact</a></li>
                 </ul>

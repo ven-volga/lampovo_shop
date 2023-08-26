@@ -1,0 +1,93 @@
+{% extends 'base_page.html' %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static '/style.css' %}">{% endblock style %}
+{% block title %}
+Shop - Lampovo
+{% endblock title %}
+
+{% block name %}
+<a href="{% url 'main_page'%}" style="color: rgb(46, 48, 47);">Lampovo</a>
+{% endblock name %}
+
+{% block container %}
+
+<div class="content-bloc" style="border-top: 1px solid rgb(46, 48, 47); text-align: center;">
+    <br>
+    <h1>Shopping Cart</h1>
+</div>
+<section class="cart-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-12">
+                <p class="mb-3 text-center">
+                    <strong class="font-weight-bold">{{ cart|length }}</strong> items in your cart</p>
+                <table id="shoppingCart" class="table table-condensed table-responsive">
+                    <thead>
+                    <tr>
+                        <th style="width:63%">Product</th>
+                        <th style="width:14%">Price</th>
+                        <th style="width:7%">Quantity</th>
+                        <th style="width:16%"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in cart %}
+                    {% with product=item.product %}
+                    <tr>
+                        <td data-th="Product">
+                            <div class="row">
+                                <div class="col-md-3 text-left">
+                                    <img src="{% if product.main_image %}{{ product.main_image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
+                                         alt="main_image"
+                                         class="img-fluid d-none d-md-block mb-2 shadow">
+                                </div>
+                                <div class="col-md-9 text-left mt-sm-2">
+                                    <a href="{{ product.get_absolute_url }}"><h4>{{ product.name }}</h4></a>
+                                    <p class="font-weight-light">Lampovo {{ product.category }}</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td data-th="Price">$ {{ product.price }}</td>
+                        <form action="{% url 'cart:cart_add' product.id %}" method="post" style="display: inline;">
+                            <td data-th="Quantity">
+                                <input type="number" name="quantity" class="form-control text-center"
+                                       value="{{ item.quantity }}" min="1" max="20">
+                                {{ item.update_quantity_form.update }}
+                            </td>
+                            <td class="actions" data-th="">
+                                <div class="text-right">
+                                    <button type="submit" class="btn btn-white border-secondary btn-md mb-2">
+                                        <i class="fas fa-sync"></i>
+                                    </button>
+                                    {% csrf_token %}
+                                    <a href="{% url 'cart:cart_remove' product.id %}"
+                                       class="btn btn-white border-secondary btn-md mb-2">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </form>
+                    </tr>
+                    </tbody>
+                    {% endwith %}
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-12 col-sm-4 ms-md-3 ms-lg-5 mt-md-2 mt-lg-5">
+                <a href="{% url 'product_list' %}" class="back-link">
+                    <h6><i class="fas fa-arrow-left mr-2"></i> Continue Shopping</a></h6>
+            </div>
+            <div class="col-7 col-sm-4 ms-auto">
+                <h4>Subtotal:</h4>
+                <h1>${{ cart.get_total_price }}</h1>
+                <div class="col-sm-6 order-md-2">
+                    <a href="catalog.html" class="btn btn-primary mb-4 btn-lg">Checkout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock container %}

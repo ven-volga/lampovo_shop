@@ -26,9 +26,10 @@ Shop - Lampovo
                         <div id="carouselProductPhotos" class="carousel slide">
                             <div class="carousel-inner">
                                 {% for image in product_detail.images.all %}
-                                    <div class="carousel-item{% if forloop.first %} active{% endif %}">
-                                        <img src="{{ image.image.url }}" class="d-block w-100" alt="{{ product_detail.name }}">
-                                    </div>
+                                <div class="carousel-item{% if forloop.first %} active{% endif %}">
+                                    <img src="{{ image.image.url }}" class="d-block w-100"
+                                         alt="{{ product_detail.name }}">
+                                </div>
                                 {% endfor %}
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselProductPhotos"
@@ -51,11 +52,12 @@ Shop - Lampovo
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="d-flex align-items-center">
                                     <span class="ml-1">
-                                        <a href="{% url 'product_list' %}" style="color: rgb(120, 120, 120);">&larr; Back to shop</a>
+                                        <a href="{% url 'product_list' %}" class="back-link">&larr; Back to shop</a>
                                     </span>
                                 </div>
                             </div>
-                            <div class="mt-4 mb-3"><span class="text-muted">Category: {{ product_detail.category }}</span>
+                            <div class="mt-4 mb-3"><span
+                                    class="text-muted">Category: {{ product_detail.category }}</span>
                                 {% comment %} <h4 class="mt-3">{{ product_detail.name }}</h4> {% endcomment %}
                                 <div class="price d-flex flex-row align-items-center">
                                     <div class="ml-2 mt-4"><h5>Price: {{ product_detail.price }}$</h5></div>
@@ -64,20 +66,30 @@ Shop - Lampovo
                             <p class="about">{{ product_detail.description }}</p>
                             <div class="sizes mt-5">
                                 {% if product_detail.category.name != "cb" %}
-                                    <h6 class="text-uppercase">Color:</h6>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="color" id="color_dark" checked>
-                                        <label class="form-check-label" for="color_dark">Dark wood</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="color" id="color_light">
-                                        <label class="form-check-label" for="color_light">Light wood</label>
-                                    </div>
+                                <h6 class="">Color:</h6>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="color" id="color_dark" checked>
+                                    <label class="form-check-label" for="color_dark">Dark wood</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="color" id="color_light">
+                                    <label class="form-check-label" for="color_light">Light wood</label>
+                                </div>
                                 {% endif %}
                             </div>
-                            <div class="cart mt-4 align-items-center">
-                                <button class="btn btn-dark text-uppercase mr-2 px-4">Add to cart</button>
-                                <i class="fa fa-heart text-muted"></i> <i class="fa fa-share-alt text-muted"></i></div>
+                            <div class="d-flex">
+                                <form action="{% url 'cart:cart_add' product_detail.id %}" method="post"
+                                      class="cart mt-4 align-items-center">
+                                    <h6>Quantity:</h6>
+                                    <input type="number" name="quantity" class="form-control text-center w-50 mb-4"
+                                           value="1" min="1" max="20">
+                                    {{ item.update_quantity_form.update }}
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-primary text-uppercase mr-2 px-4">Add to cart
+                                    </button>
+                                    <i class="fa fa-share-alt text-muted"></i>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -93,7 +105,38 @@ Shop - Lampovo
     <div class="row">
         <div class="col">
             <br>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis maiores neque reprehenderit quae ut ea necessitatibus debitis, omnis voluptatum culpa perferendis, at sit sapiente repudiandae voluptate unde consequuntur inventore iste quia excepturi modi quas quod temporibus earum? Pariatur autem repudiandae sapiente. Eius repellat ratione eum error, blanditiis ipsam libero voluptate id tenetur est tempore perferendis, vel necessitatibus autem, perspiciatis beatae dolorem maxime assumenda! Error, sed? Voluptas asperiores fugit neque inventore nihil cumque, doloremque, nesciunt totam dignissimos esse dolor enim ad accusamus sint quasi pariatur facere, veniam blanditiis quos harum tempore repellendus. Necessitatibus veniam officiis aliquid quidem quas quisquam iste illum eum aut ipsa natus quos modi commodi, cum dicta omnis facilis ducimus accusamus ipsum voluptatibus. Quidem voluptatem, omnis nobis saepe labore ullam ex, rem corrupti, sapiente earum tenetur! Praesentium in velit delectus atque officiis eaque deserunt nihil aliquid qui magni earum nesciunt at officia nostrum cumque iure debitis explicabo, facilis vel asperiores voluptate! Omnis natus autem aliquam perspiciatis nostrum delectus quam, quibusdam sit quis repellat, ea vero vel ut dolorum deserunt magni quia ex quaerat vitae tempore sed est beatae? Adipisci fugiat doloribus doloremque ducimus id magni. Aut quas, suscipit libero rerum eaque ipsa aperiam id deleniti repudiandae quis dolore repellendus vero nemo enim delectus blanditiis illo praesentium quaerat animi magni? Deleniti eum, quo veritatis molestiae aut officiis sit! Iure commodi repellat totam obcaecati deserunt accusamus natus id sint a aliquam, fugit atque vitae numquam fuga neque vero cupiditate eligendi aut quidem cum itaque? Dignissimos asperiores accusantium vero cum corrupti laborum reiciendis veritatis. Repudiandae, sint! Assumenda mollitia molestiae voluptatibus harum debitis! Dolores asperiores amet quam accusamus ad? Nihil exercitationem obcaecati architecto recusandae sint rem commodi iusto quisquam. Sapiente officiis perspiciatis consequatur magni ea! Ad, soluta. Consectetur, culpa aliquid. Expedita culpa eius blanditiis amet debitis. Magni saepe consequatur unde eaque adipisci reprehenderit minima neque itaque nam tempora at dolore consectetur vel obcaecati voluptatum cumque eligendi a modi, sit tenetur, vitae aut. Quas, quia at soluta pariatur nulla dicta autem! Minima et laboriosam delectus culpa dicta quas ea iure voluptas eius tenetur. Explicabo molestiae expedita tempora reiciendis nulla inventore perspiciatis autem culpa libero, cum a, cumque voluptatem repudiandae tenetur vitae. Culpa illo sunt beatae in aliquam, non iusto illum doloremque ab quibusdam, dicta voluptas cupiditate nostrum rem tenetur neque molestiae optio! Minima ipsa obcaecati mollitia veniam iusto repellendus quisquam fuga omnis? Vitae incidunt consequatur quidem expedita distinctio eius dolorem hic porro, eos illum neque labore quaerat aperiam cupiditate eligendi, deleniti autem perspiciatis ex eveniet laboriosam quam! Necessitatibus officiis quaerat nam at hic cumque iste earum, facilis eos cupiditate, iusto dolorem, inventore eius nesciunt vero maxime laboriosam. Repellat consequatur quasi fugiat rerum quod beatae laudantium nihil veniam, repellendus voluptatibus quas quidem, sunt corrupti.
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis maiores neque reprehenderit quae ut ea
+            necessitatibus debitis, omnis voluptatum culpa perferendis, at sit sapiente repudiandae voluptate unde
+            consequuntur inventore iste quia excepturi modi quas quod temporibus earum? Pariatur autem repudiandae
+            sapiente. Eius repellat ratione eum error, blanditiis ipsam libero voluptate id tenetur est tempore
+            perferendis, vel necessitatibus autem, perspiciatis beatae dolorem maxime assumenda! Error, sed? Voluptas
+            asperiores fugit neque inventore nihil cumque, doloremque, nesciunt totam dignissimos esse dolor enim ad
+            accusamus sint quasi pariatur facere, veniam blanditiis quos harum tempore repellendus. Necessitatibus
+            veniam officiis aliquid quidem quas quisquam iste illum eum aut ipsa natus quos modi commodi, cum dicta
+            omnis facilis ducimus accusamus ipsum voluptatibus. Quidem voluptatem, omnis nobis saepe labore ullam ex,
+            rem corrupti, sapiente earum tenetur! Praesentium in velit delectus atque officiis eaque deserunt nihil
+            aliquid qui magni earum nesciunt at officia nostrum cumque iure debitis explicabo, facilis vel asperiores
+            voluptate! Omnis natus autem aliquam perspiciatis nostrum delectus quam, quibusdam sit quis repellat, ea
+            vero vel ut dolorum deserunt magni quia ex quaerat vitae tempore sed est beatae? Adipisci fugiat doloribus
+            doloremque ducimus id magni. Aut quas, suscipit libero rerum eaque ipsa aperiam id deleniti repudiandae quis
+            dolore repellendus vero nemo enim delectus blanditiis illo praesentium quaerat animi magni? Deleniti eum,
+            quo veritatis molestiae aut officiis sit! Iure commodi repellat totam obcaecati deserunt accusamus natus id
+            sint a aliquam, fugit atque vitae numquam fuga neque vero cupiditate eligendi aut quidem cum itaque?
+            Dignissimos asperiores accusantium vero cum corrupti laborum reiciendis veritatis. Repudiandae, sint!
+            Assumenda mollitia molestiae voluptatibus harum debitis! Dolores asperiores amet quam accusamus ad? Nihil
+            exercitationem obcaecati architecto recusandae sint rem commodi iusto quisquam. Sapiente officiis
+            perspiciatis consequatur magni ea! Ad, soluta. Consectetur, culpa aliquid. Expedita culpa eius blanditiis
+            amet debitis. Magni saepe consequatur unde eaque adipisci reprehenderit minima neque itaque nam tempora at
+            dolore consectetur vel obcaecati voluptatum cumque eligendi a modi, sit tenetur, vitae aut. Quas, quia at
+            soluta pariatur nulla dicta autem! Minima et laboriosam delectus culpa dicta quas ea iure voluptas eius
+            tenetur. Explicabo molestiae expedita tempora reiciendis nulla inventore perspiciatis autem culpa libero,
+            cum a, cumque voluptatem repudiandae tenetur vitae. Culpa illo sunt beatae in aliquam, non iusto illum
+            doloremque ab quibusdam, dicta voluptas cupiditate nostrum rem tenetur neque molestiae optio! Minima ipsa
+            obcaecati mollitia veniam iusto repellendus quisquam fuga omnis? Vitae incidunt consequatur quidem expedita
+            distinctio eius dolorem hic porro, eos illum neque labore quaerat aperiam cupiditate eligendi, deleniti
+            autem perspiciatis ex eveniet laboriosam quam! Necessitatibus officiis quaerat nam at hic cumque iste earum,
+            facilis eos cupiditate, iusto dolorem, inventore eius nesciunt vero maxime laboriosam. Repellat consequatur
+            quasi fugiat rerum quod beatae laudantium nihil veniam, repellendus voluptatibus quas quidem, sunt corrupti.
             <br>
             <br>
             <br>
