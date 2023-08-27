@@ -77,6 +77,11 @@ input:focus {
     background-color: rgb(46, 48, 47);
 }
 
+.user-btn {
+    background-color: white;
+    border: 0px;
+}
+
 .custom-btn {
     background-color: white;
     color: rgb(46, 48, 47);
@@ -232,8 +237,6 @@ input:focus {
     border-radius: 2px !important;
     color: whitesmoke !important;
     transition: 0.2s linear !important;
-    box-shadow: 0 0 0 1px lightgray, 0 0 0 0.10rem rgba(128, 128, 128, 0.8) !important;
-    transition: 0.3s linear !important;
 }
 
 .is-bloc {
@@ -271,11 +274,11 @@ input:focus {
 }
 
 .cart-container {
+    width: 100% !important;
     font-family: 'Artegra Sans Extended Alt';
     font-weight: 200;
     font-style: normal;
     color: rgb(46, 48, 47);
-
 }
 
 .form-control {
@@ -386,7 +389,6 @@ li {
     justify-content: center;
     align-items: center;
 }
-
 
 .page-wrapper {
     display: flex;
