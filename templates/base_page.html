@@ -7,6 +7,8 @@
     <link rel="shortcut icon" href="{% static '/img/favicon.png' %}" type="image/x-icon">
     <link rel="stylesheet" href="{% static '/bootstrap/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static '/style.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+
 
     <title>{% block title %}Lampovo{% endblock title %}</title>
 </head>
@@ -118,6 +120,7 @@
         </div>
     </footer>
 </div>
+<script src="{% static 'script.js' %}"></script>
 <script src="{% static '/bootstrap/js/bootstrap.min.js' %}"></script>
 <script src="https://kit.fontawesome.com/9984184d83.js" crossorigin="anonymous"></script>
 </body>

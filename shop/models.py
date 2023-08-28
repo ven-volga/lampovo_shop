@@ -28,22 +28,16 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    COLOR_CHOICES = [
-        ('dw', 'Dark wood'),
-        ('lw', 'Light wood'),
-        ('nc', 'No color'),
-    ]
-
     category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)
     name = models.CharField(max_length=100, db_index=True)
     slug = models.CharField(max_length=100, db_index=True, unique=True)
     main_image = models.ImageField(upload_to=f'products/main_image/', blank=True)
     description = models.TextField(max_length=1500, blank=True)
+    specifications = models.JSONField(blank=True, default=dict)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     available = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    color = models.CharField(max_length=2, choices=COLOR_CHOICES, default='nc')
     customize = models.BooleanField(default=False)
     is_recommend = models.BooleanField(default=False)
 

@@ -52,7 +52,8 @@ Shop - Lampovo
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="d-flex align-items-center">
                                     <span class="ml-1">
-                                        <a href="{% url 'product_list' %}" class="back-link">&larr; Back to shop</a>
+                                        <a href="{% url 'product_list' %}" class="back-link"><i
+                                                class="fa-solid fa-chevron-left"></i> Back to shop</a>
                                     </span>
                                 </div>
                             </div>
@@ -85,9 +86,12 @@ Shop - Lampovo
                                            value="1" min="1" max="20">
                                     {{ item.update_quantity_form.update }}
                                     {% csrf_token %}
-                                    <button type="submit" class="btn btn-primary text-uppercase mr-2 px-4">Add to cart
-                                    </button>
-                                    <i class="fa fa-share-alt ms-3" style="color: rgb(46, 48, 47); font-size: 25px"></i>
+
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <button type="submit" class="btn btn-primary text-uppercase mr-2 px-4">Add to cart</button>
+                                        <input type="text" id="CopyItem" value="{{ request.scheme }}://{{ request.get_host }}{{ product_detail.get_absolute_url }}" class="d-none">
+                                        <button class="btn-copy share-btn mt-1" type="button" onclick="copyToClipboard()"><i class="fa fa-share-alt ms-3"></i></button>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -99,47 +103,25 @@ Shop - Lampovo
 </div>
 <!-- Title line -->
 <div class="container">
-    <div class="col line text-uppercase">Specifications</div>
-</div>
-<div class="container">
     <div class="row">
-        <div class="col">
-            <br>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis maiores neque reprehenderit quae ut ea
-            necessitatibus debitis, omnis voluptatum culpa perferendis, at sit sapiente repudiandae voluptate unde
-            consequuntur inventore iste quia excepturi modi quas quod temporibus earum? Pariatur autem repudiandae
-            sapiente. Eius repellat ratione eum error, blanditiis ipsam libero voluptate id tenetur est tempore
-            perferendis, vel necessitatibus autem, perspiciatis beatae dolorem maxime assumenda! Error, sed? Voluptas
-            asperiores fugit neque inventore nihil cumque, doloremque, nesciunt totam dignissimos esse dolor enim ad
-            accusamus sint quasi pariatur facere, veniam blanditiis quos harum tempore repellendus. Necessitatibus
-            veniam officiis aliquid quidem quas quisquam iste illum eum aut ipsa natus quos modi commodi, cum dicta
-            omnis facilis ducimus accusamus ipsum voluptatibus. Quidem voluptatem, omnis nobis saepe labore ullam ex,
-            rem corrupti, sapiente earum tenetur! Praesentium in velit delectus atque officiis eaque deserunt nihil
-            aliquid qui magni earum nesciunt at officia nostrum cumque iure debitis explicabo, facilis vel asperiores
-            voluptate! Omnis natus autem aliquam perspiciatis nostrum delectus quam, quibusdam sit quis repellat, ea
-            vero vel ut dolorum deserunt magni quia ex quaerat vitae tempore sed est beatae? Adipisci fugiat doloribus
-            doloremque ducimus id magni. Aut quas, suscipit libero rerum eaque ipsa aperiam id deleniti repudiandae quis
-            dolore repellendus vero nemo enim delectus blanditiis illo praesentium quaerat animi magni? Deleniti eum,
-            quo veritatis molestiae aut officiis sit! Iure commodi repellat totam obcaecati deserunt accusamus natus id
-            sint a aliquam, fugit atque vitae numquam fuga neque vero cupiditate eligendi aut quidem cum itaque?
-            Dignissimos asperiores accusantium vero cum corrupti laborum reiciendis veritatis. Repudiandae, sint!
-            Assumenda mollitia molestiae voluptatibus harum debitis! Dolores asperiores amet quam accusamus ad? Nihil
-            exercitationem obcaecati architecto recusandae sint rem commodi iusto quisquam. Sapiente officiis
-            perspiciatis consequatur magni ea! Ad, soluta. Consectetur, culpa aliquid. Expedita culpa eius blanditiis
-            amet debitis. Magni saepe consequatur unde eaque adipisci reprehenderit minima neque itaque nam tempora at
-            dolore consectetur vel obcaecati voluptatum cumque eligendi a modi, sit tenetur, vitae aut. Quas, quia at
-            soluta pariatur nulla dicta autem! Minima et laboriosam delectus culpa dicta quas ea iure voluptas eius
-            tenetur. Explicabo molestiae expedita tempora reiciendis nulla inventore perspiciatis autem culpa libero,
-            cum a, cumque voluptatem repudiandae tenetur vitae. Culpa illo sunt beatae in aliquam, non iusto illum
-            doloremque ab quibusdam, dicta voluptas cupiditate nostrum rem tenetur neque molestiae optio! Minima ipsa
-            obcaecati mollitia veniam iusto repellendus quisquam fuga omnis? Vitae incidunt consequatur quidem expedita
-            distinctio eius dolorem hic porro, eos illum neque labore quaerat aperiam cupiditate eligendi, deleniti
-            autem perspiciatis ex eveniet laboriosam quam! Necessitatibus officiis quaerat nam at hic cumque iste earum,
-            facilis eos cupiditate, iusto dolorem, inventore eius nesciunt vero maxime laboriosam. Repellat consequatur
-            quasi fugiat rerum quod beatae laudantium nihil veniam, repellendus voluptatibus quas quidem, sunt corrupti.
-            <br>
-            <br>
-            <br>
+        <div class="col line text-uppercase">Specifications</div>
+    </div>
+</div>
+<!-- Specifications info -->
+<div class="container product-details">
+    <div class="row justify-content-md-center mt-3 mb-5">
+        <div class="col-md-6 text-center">
+            <table class="table">
+                <tbody>
+                {% for key, value in product_detail.specifications.items %}
+                <tr>
+                    <td class="text-start">{{ key }}</td>
+                    <td class="text-end me-3">{{ value }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
         </div>
     </div>
 </div>

@@ -334,6 +334,15 @@ input:focus {
     transition: 0.3s linear !important;
 }
 
+.share-btn {
+    background-color: white;
+    color: rgb(46, 48, 47);
+    font-size: 18px;
+    border: 0px;
+    justify-content: center;
+    align-items: center;
+}
+
 footer {
     background-color: rgb(46, 48, 47);
 }
