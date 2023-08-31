@@ -8,10 +8,10 @@ function copyToClipboard() {
     });
 
     clipboard.on('success', function(e) {
-        alert("Текст скопійовано: " + e.text);
+        alert("Link copied: " + e.text);
     });
 
     clipboard.on('error', function(e) {
-        alert("Копіювання не вдалося");
+        alert("Copying failed");
     });
 }

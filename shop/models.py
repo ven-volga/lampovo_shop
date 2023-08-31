@@ -28,6 +28,12 @@ class Category(models.Model):
 
 
 class Product(models.Model):
+    PRODUCT_AVAILABLE_CHOICES = [
+        ('PTO', 'Production to order'),
+        ('IS', 'In stock'),
+        ('RTS', 'Ready to ship'),
+    ]
+
     category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)
     name = models.CharField(max_length=100, db_index=True)
     slug = models.CharField(max_length=100, db_index=True, unique=True)
@@ -36,13 +42,15 @@ class Product(models.Model):
     specifications = models.JSONField(blank=True, default=dict)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     available = models.BooleanField(default=True)
+    availability = models.CharField(max_length=4, choices=PRODUCT_AVAILABLE_CHOICES, default='PTO')
+    production_time = models.SmallIntegerField(blank=True, null=True, default=30)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    customize = models.BooleanField(default=False)
     is_recommend = models.BooleanField(default=False)
+    ordering = models.SmallIntegerField(default=1)
 
     class Meta:
-        ordering = ('name',)
+        ordering = ('ordering',)
         verbose_name = 'Product'
         verbose_name_plural = 'Products'
         index_together = (('id', 'slug'), )
@@ -52,6 +60,9 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse('product_detail', args=[self.id, self.slug])
+
+    def get_availability_display(self):
+        return dict(Product.PRODUCT_AVAILABLE_CHOICES)[self.availability]
 
 
 class ProductImage(models.Model):
