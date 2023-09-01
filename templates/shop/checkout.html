@@ -15,16 +15,6 @@ Checkout - Lampovo
     <br>
     <h1>Checkout</h1>
     <br>
-    {{ cart }}
-    <br>
-    {{ order.order_id }}
-    <br>
-    {{ order.customer }}
-    <br>
-    {{ order.shipping }}
-    <br>
-    {{ order.total_price }}
-    <br>
 
     <div class="container">
         <form method="post" action="{% url 'checkout' %}">
@@ -42,5 +32,42 @@ Checkout - Lampovo
     </div>
 </div>
 
-
+<div class="container d-flex cart-container">
+    <div class="row">
+        <div class="col-11 col-md-8 m-auto">
+            <table id="shoppingCart" class="table table-condensed table-responsive">
+                <thead>
+                <tr>
+                    <th style="width:55%">Product</th>
+                    <th style="width:15%">Price</th>
+                    <th style="width:15%">Quantity</th>
+                    <th style="width:15%">Total</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for product in cart_products %}
+                <tr>
+                    <td data-th="Product">
+                        <div class="row">
+                            <div class="col-md-3 text-left">
+                                <img src="{% if product.main_image %}{{ product.main_image.url }}
+                                {% else %}{% static 'img/no_image.png' %}{% endif %}"
+                                     alt="main_image"
+                                     class="img-thumbnail d-none d-md-block mb-2 shadow">
+                            </div>
+                            <div class="col-md-9 text-left mt-sm-2">
+                                <a href="{{ product.get_absolute_url }}"><h6>{{ product.name }}</h6></a>
+                            </div>
+                        </div>
+                    </td>
+                    <td data-th="Price">$ {{ product.price }}</td>
+                    <td data-th="Quantity" class="text-center">{{ product.quantity }}</td>
+                    <td data-th="Total">$ {{ product.total_item_price }}</td>
+                </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
 {% endblock container %}

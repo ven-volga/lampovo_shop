@@ -1,6 +1,5 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.views import View
-
 from cart.cart import Cart
 from lampovo_shop import settings
 from orders.forms import OrderAddForm
@@ -17,9 +16,28 @@ class CheckoutView(View):
             cart = Cart(request)
             total_price = cart.get_total_price()
             cart = request.session.get(settings.CART_SESSION_ID)
+            cart_items = cart
+
+            cart_products = []
+
+            for product_id, item_data in cart_items.items():
+                product = Product.objects.get(id=product_id)
+                quantity = item_data['quantity']
+                price = product.price
+                total_item_price = price * quantity
+                main_image = product.main_image
+
+                cart_products.append({
+                    'name': product,
+                    'quantity': quantity,
+                    'price': price,
+                    'total_item_price': total_item_price,
+                    'main_image': main_image,
+                })
 
             context = {
                 'cart': cart,
+                'cart_products': cart_products,
                 'total_price': total_price,
                 'order_form': OrderAddForm(),
             }
@@ -32,7 +50,10 @@ class CheckoutView(View):
         order_form = OrderAddForm(request.POST)
         if order_form.is_valid():
             cart = Cart(request)
-            order = Order(customer=request.user, total_price=cart.get_total_price(), shipping=request.POST.get('shipping'))
+            order = Order(
+                customer=request.user,
+                total_price=cart.get_total_price(),
+                shipping=request.POST.get('shipping'))
             order.save()
 
             cart = request.session.get(settings.CART_SESSION_ID)
