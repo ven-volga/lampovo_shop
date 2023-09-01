@@ -5,6 +5,15 @@ from django.utils.translation import gettext_lazy as _
 
 
 class User(AbstractUser):
+    USER_ROLE_CHOICES = [
+        ('CU', 'Customer'),
+        ('EE', 'Electronic engineer'),
+        ('BE', 'Body engineer'),
+        ('AM', 'Account manager'),
+        ('DEV', 'Developer'),
+    ]
+
+    role = models.CharField(max_length=4, choices=USER_ROLE_CHOICES, default='Customer')
     email = models.EmailField(
         _("email address"),
         unique=True,

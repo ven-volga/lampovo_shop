@@ -43,11 +43,11 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     available = models.BooleanField(default=True)
     availability = models.CharField(max_length=4, choices=PRODUCT_AVAILABLE_CHOICES, default='PTO')
-    production_time = models.SmallIntegerField(blank=True, null=True, default=30)
+    production_time = models.PositiveIntegerField(blank=True, null=True, default=30)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     is_recommend = models.BooleanField(default=False)
-    ordering = models.SmallIntegerField(default=1)
+    ordering = models.PositiveIntegerField(default=1)
 
     class Meta:
         ordering = ('ordering',)
