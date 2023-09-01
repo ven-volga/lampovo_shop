@@ -1,0 +1,46 @@
+{% extends 'base_page.html' %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static '/style.css' %}">{% endblock style %}
+{% block title %}
+Checkout - Lampovo
+{% endblock title %}
+
+{% block name %}
+<a href="{% url 'main_page'%}" style="color: rgb(46, 48, 47);">Lampovo</a>
+{% endblock name %}
+
+{% block container %}
+<div class="content-bloc" style="border-top: 1px solid rgb(46, 48, 47); text-align: center;">
+    <br>
+    <h1>Checkout</h1>
+    <br>
+    {{ cart }}
+    <br>
+    {{ order.order_id }}
+    <br>
+    {{ order.customer }}
+    <br>
+    {{ order.shipping }}
+    <br>
+    {{ order.total_price }}
+    <br>
+
+    <div class="container">
+        <form method="post" action="{% url 'checkout' %}">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col">
+                    <div class="mb-3">
+                        {{ order_form.shipping.label_tag }}
+                        {{ order_form.shipping }}
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class=" btn btn-outline-dark custom-btn">Submit</button>
+        </form>
+    </div>
+</div>
+
+
+{% endblock container %}

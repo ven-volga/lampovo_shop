@@ -1,3 +1,5 @@
 1. {% static 'img/no_image.png' %}
 2. Modal share
 3. Add all routes and templates for it
+4. User page with orders list and statuses
+5. Page for manager

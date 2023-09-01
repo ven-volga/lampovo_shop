@@ -94,7 +94,7 @@ Shop - Lampovo
                 <h4>Subtotal:</h4>
                 <h2>$ {{ cart.get_total_price }}</h2>
                 <div class="col-sm-6 order-md-2">
-                    <a href="#" class="btn btn-primary mb-4 btn-lg">Checkout</a>
+                    <a href="{% url 'checkout' %}" class="btn btn-primary mb-4 btn-lg">Checkout</a>
                 </div>
             </div>
         </div>
