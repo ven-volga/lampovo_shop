@@ -3,7 +3,7 @@
 {% block style %}
 <link rel="stylesheet" href="{% static '/style.css' %}">{% endblock style %}
 {% block title %}
-Checkout - Lampovo
+Order - Lampovo
 {% endblock title %}
 
 {% block name %}
@@ -13,25 +13,15 @@ Checkout - Lampovo
 {% block container %}
 <div class="content-bloc" style="border-top: 1px solid rgb(46, 48, 47); text-align: center;">
     <br>
-    <h1>Checkout</h1>
+    <h1>Order information</h1>
     <br>
-
-    <div class="container">
-        <form method="post" action="{% url 'checkout' %}">
-            {% csrf_token %}
-            <div class="row">
-                <div class="col">
-                    <div class="mb-3">
-                        {{ order_form.shipping.label_tag }}
-                        {{ order_form.shipping }}
-                    </div>
-                </div>
-            </div>
-            <button type="submit" class=" btn btn-outline-dark custom-btn">Submit</button>
-        </form>
-    </div>
+    {% if message %}
+    {{ message }}
+    <br>
+    <a href="{% url 'product_list' %}" class="btn btn-outline-dark custom-btn mt-3">Continue shopping</a>
 </div>
-
+{% else %}
+<!-- Cart items table -->
 <div class="container d-flex cart-container">
     <div class="row">
         <div class="col-11 col-md-8 m-auto">
@@ -41,7 +31,7 @@ Checkout - Lampovo
                     <th style="width:55%">Product</th>
                     <th style="width:15%">Price</th>
                     <th style="width:15%">Quantity</th>
-                    <th style="width:15%">Total</th>
+                    <th style="width:15%">Subtotal</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -53,7 +43,7 @@ Checkout - Lampovo
                                 <img src="{% if product.main_image %}{{ product.main_image.url }}
                                 {% else %}{% static 'img/no_image.png' %}{% endif %}"
                                      alt="main_image"
-                                     class="img-thumbnail d-none d-md-block mb-2 shadow">
+                                     class="img-fluid d-none d-md-block mb-2 shadow">
                             </div>
                             <div class="col-md-9 text-left mt-sm-2">
                                 <a href="{{ product.get_absolute_url }}"><h6>{{ product.name }}</h6></a>
@@ -70,4 +60,56 @@ Checkout - Lampovo
         </div>
     </div>
 </div>
+<!-- Total sum and back to cart -->
+<div class="container cart-container">
+    <div class="row">
+        <div class="col-5 col-md-4 m-auto">
+            <a href="{% url 'cart:cart_detail' %}" class="back-link">
+                <h6><i class="fas fa-arrow-left mr-2"></i> Back to cart</h6></a>
+        </div>
+        <div class="col-5 col-md-4 m-auto">
+            <span><h4>Total: {{ total_price }}$</h4></span>
+        </div>
+    </div>
+</div>
+<!-- Shipping information form -->
+<div class="content-bloc" style="border-top: 0;">
+    <br>
+    <h2>Shipping information</h2>
+    <br>
+</div>
+
+
+{{ order_form.country }}
+
+
+
+<!-- Django form -->
+<hr>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <form method="post" action="{% url 'checkout' %}">
+                {% csrf_token %}
+                {% for field in order_form %}
+                <div class="row">
+                    <div class="col">
+                        <div class="mb-3">
+                            <span class="text-start">{{ field.label_tag }}</span>
+                            <br>
+                            {{ field }}
+                            {{ field.errors }}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                <button type="submit" class=" btn btn-outline-dark custom-btn">Submit</button>
+            </form>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+{% endif %}
 {% endblock container %}

@@ -343,6 +343,16 @@ input:focus {
     align-items: center;
 }
 
+.my-custom-class {
+    /* Ось деякі стилі за вашим бажанням */
+    border: 1px solid #ccc;
+    padding: 5px;
+    width: 100%;
+    /* і так далі */
+}
+
+
+
 footer {
     background-color: rgb(46, 48, 47);
 }

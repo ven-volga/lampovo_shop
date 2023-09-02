@@ -1,0 +1,22 @@
+{% extends 'base_page.html' %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static '/style.css' %}">{% endblock style %}
+{% block title %}
+Checkout - Lampovo
+{% endblock title %}
+
+{% block name %}
+<a href="{% url 'main_page'%}" style="color: rgb(46, 48, 47);">Lampovo</a>
+{% endblock name %}
+
+{% block container %}
+<div class="content-bloc" style="border-top: 1px solid rgb(46, 48, 47); text-align: center;">
+    <br>
+    <h1>Confirm</h1>
+    <br>
+    <span>Some text</span>
+
+
+
+{% endblock %}

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 from cart.cart import Cart
 from lampovo_shop import settings
@@ -9,42 +9,57 @@ from shop.models import Product
 
 class CheckoutView(View):
     template_name = 'shop/checkout.html'
-    template_redirect = 'registration/login.html'
+    login_redirect = 'login'
+    complete_template = 'shop/complete.html'
+
+    @staticmethod
+    def get_cart_products(request):
+        cart = Cart(request)
+        total_price = cart.get_total_price()
+        cart = request.session.get(settings.CART_SESSION_ID)
+        cart_items = cart
+
+        cart_products = []
+
+        for product_id, item_data in cart_items.items():
+            product = Product.objects.get(id=product_id)
+            quantity = item_data['quantity']
+            price = product.price
+            total_item_price = price * quantity
+            main_image = product.main_image
+
+            cart_products.append({
+                'name': product,
+                'quantity': quantity,
+                'price': price,
+                'total_item_price': total_item_price,
+                'main_image': main_image,
+            })
+
+        context = {
+            'client_cart': cart,
+            'cart_products': cart_products,
+            'total_price': total_price,
+            'order_form': OrderAddForm(),
+        }
+
+        return context
 
     def get(self, request):
-        if request.user.is_authenticated:
-            cart = Cart(request)
-            total_price = cart.get_total_price()
-            cart = request.session.get(settings.CART_SESSION_ID)
-            cart_items = cart
+        cart = Cart(request)
 
-            cart_products = []
-
-            for product_id, item_data in cart_items.items():
-                product = Product.objects.get(id=product_id)
-                quantity = item_data['quantity']
-                price = product.price
-                total_item_price = price * quantity
-                main_image = product.main_image
-
-                cart_products.append({
-                    'name': product,
-                    'quantity': quantity,
-                    'price': price,
-                    'total_item_price': total_item_price,
-                    'main_image': main_image,
-                })
-
+        if not cart:
             context = {
-                'cart': cart,
-                'cart_products': cart_products,
-                'total_price': total_price,
-                'order_form': OrderAddForm(),
+                'message': 'You have no items in cart'
             }
-
             return render(request, self.template_name, context)
+
+        elif request.user.is_authenticated and cart:
+            context = self.get_cart_products(request)
+            return render(request, self.template_name, context)
+
         else:
-            return render(request, self.template_redirect)
+            return redirect(self.login_redirect)
 
     def post(self, request):
         order_form = OrderAddForm(request.POST)
@@ -53,7 +68,13 @@ class CheckoutView(View):
             order = Order(
                 customer=request.user,
                 total_price=cart.get_total_price(),
-                shipping=request.POST.get('shipping'))
+                country=order_form.cleaned_data['country'],
+                city=order_form.cleaned_data['city'],
+                zip=order_form.cleaned_data['zip'],
+                address=order_form.cleaned_data['address'],
+                phone_number=order_form.cleaned_data['phone_number'],
+                comment=order_form.cleaned_data['comment'],
+            )
             order.save()
 
             cart = request.session.get(settings.CART_SESSION_ID)
@@ -67,5 +88,18 @@ class CheckoutView(View):
 
             cart.clear()
 
-        context = {'order_form': order_form}
+            return render(request, self.complete_template)
+
+        else:
+            context = self.get_cart_products(request)
+            context.update({'order_form': order_form})
+            return render(request, self.template_name, context)
+
+
+class CompleteView(View):
+    template_name = 'shop/complete.html'
+
+    def get(self, request):
+        context = {
+        }
         return render(request, self.template_name, context)
