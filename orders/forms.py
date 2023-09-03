@@ -19,3 +19,14 @@ class OrderAddForm(forms.Form):
                               widget=forms.TextInput(attrs={'class': 'custom-form'}))
     comment = forms.CharField(label="Order comment", max_length=1000, required=False,
                               widget=forms.TextInput(attrs={'class': 'custom-form-area'}))
+
+    def __init__(self, request, *args, **kwargs):
+        super(OrderAddForm, self).__init__(*args, **kwargs)
+        if request.user.is_authenticated:
+            self.fields['first_name'].initial = request.user.first_name
+            self.fields['last_name'].initial = request.user.last_name
+            self.fields['phone_number'].initial = request.user.phone_number
+            self.fields['country'].initial = request.user.country
+            self.fields['city'].initial = request.user.city
+            self.fields['zip'].initial = request.user.zip
+            self.fields['address'].initial = request.user.address

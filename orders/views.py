@@ -42,7 +42,7 @@ class CheckoutView(View):
             'client_cart': cart,
             'cart_products': cart_products,
             'total_price': total_price,
-            'order_form': OrderAddForm(),
+            'order_form': OrderAddForm(request),
         }
 
         return context
@@ -58,15 +58,13 @@ class CheckoutView(View):
 
         elif request.user.is_authenticated and cart:
             context = self.get_cart_products(request)
-            order_form = OrderAddForm()
-            context['order_form'] = order_form
             return render(request, self.template_name, context)
 
         else:
             return redirect(self.login_redirect)
 
     def post(self, request):
-        order_form = OrderAddForm(request.POST)
+        order_form = OrderAddForm(request, request.POST)
         if order_form.is_valid():
             cart = Cart(request)
             order = Order(
@@ -114,5 +112,6 @@ class CompleteView(View):
 
     def get(self, request):
         context = {
+
         }
         return render(request, self.template_name, context)
