@@ -11,7 +11,7 @@ Order - Lampovo
 {% endblock name %}
 
 {% block container %}
-<div class="content-bloc" style="border-top: 1px solid rgb(46, 48, 47); text-align: center;">
+<div class="content-bloc">
     <br>
     <h1>Order information</h1>
     <br>
@@ -49,20 +49,22 @@ Order - Lampovo
                                      class="img-fluid d-none d-md-block mb-2 shadow">
                             </div>
                             <div class="col-md-9 text-left mt-sm-2">
-                                <a href="{{ product.get_absolute_url }}"><h6>{{ product.name }}</h6></a>
+                                <a href="{{ product.url }}"><h6>{{ product.name }}</h6></a>
                             </div>
                         </div>
                     </td>
                     <td data-th="Price">$ {{ product.price }}</td>
                     <td data-th="Quantity" class="text-center">{{ product.quantity }}</td>
-                    <td data-th="Total">$ {{ product.total_item_price }}</td>
+                    <td data-th="Subtotal">$ {{ product.total_item_price }}</td>
                 </tr>
                 </tbody>
+                
                 {% endfor %}
             </table>
         </div>
     </div>
 </div>
+
 <!-- Total sum and back to cart -->
 <div class="container cart-container">
     <div class="row">

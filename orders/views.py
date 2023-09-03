@@ -4,6 +4,7 @@ from cart.cart import Cart
 from lampovo_shop import settings
 from orders.forms import OrderAddForm
 from orders.models import Order, OrderItem
+from orders.utils import send_order_email
 from shop.models import Product
 
 
@@ -18,7 +19,6 @@ class CheckoutView(View):
         total_price = cart.get_total_price()
         cart = request.session.get(settings.CART_SESSION_ID)
         cart_items = cart
-
         cart_products = []
 
         for product_id, item_data in cart_items.items():
@@ -27,6 +27,7 @@ class CheckoutView(View):
             price = product.price
             total_item_price = price * quantity
             main_image = product.main_image
+            url = Product.get_absolute_url(product)
 
             cart_products.append({
                 'name': product,
@@ -34,6 +35,7 @@ class CheckoutView(View):
                 'price': price,
                 'total_item_price': total_item_price,
                 'main_image': main_image,
+                'url': url,
             })
 
         context = {
@@ -75,7 +77,7 @@ class CheckoutView(View):
                 phone_number=order_form.cleaned_data['phone_number'],
                 comment=order_form.cleaned_data['comment'],
             )
-            order.save()
+            # order.save()
 
             cart = request.session.get(settings.CART_SESSION_ID)
 
@@ -84,9 +86,10 @@ class CheckoutView(View):
                 quantity = item_data['quantity']
                 price = product.price * quantity
                 order_item = OrderItem(order=order, product=product, quantity=quantity, subtotal_price=price)
-                order_item.save()
+                # order_item.save()
 
-            cart.clear()
+            # cart.clear()
+            send_order_email(request, request.user)
 
             return render(request, self.complete_template)
 

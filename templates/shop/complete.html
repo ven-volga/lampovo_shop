@@ -11,12 +11,25 @@ Checkout - Lampovo
 {% endblock name %}
 
 {% block container %}
-<div class="content-bloc" style="border-top: 1px solid rgb(46, 48, 47); text-align: center;">
+<div class="content-bloc">
     <br>
-    <h1>Confirm</h1>
+    <h2>You are one step closer to exquisite sound</h2>
     <br>
-    <span>Some text</span>
-
+<div class="container mt-2 mb-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h6>Thank you for your order! In the near future, our manager will contact you to clarify the details of the order and its payment.</h6>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-3">
+        <div class="col-md-3 mt-3">
+            <a href="{% url 'product_list' %}" class="btn card-btn-style w-75"><h6 style="margin: 0;">Shop</h6></a>
+        </div>
+        <div class="col-md-3 mt-3">
+            <a href="{% url 'user' %}" class="btn card-btn-style w-75"><h6 style="margin: 0;">User page</h6></a>
+        </div>
+    </div>
+</div>
 
 
 {% endblock %}
