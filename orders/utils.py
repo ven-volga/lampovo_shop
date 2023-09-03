@@ -10,11 +10,11 @@ def send_order_email(request, user):
         "domain": current_site.domain,
     }
     message = render_to_string(
-        'shop/order_details_email.html',
+        'shop/order_complete_email.html',
         context=context,
     )
     email = EmailMessage(
-        'Order details email',
+        'Order complete email',
         message,
         to=[user.email]
     )

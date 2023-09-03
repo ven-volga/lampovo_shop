@@ -58,6 +58,8 @@ class CheckoutView(View):
 
         elif request.user.is_authenticated and cart:
             context = self.get_cart_products(request)
+            order_form = OrderAddForm()
+            context['order_form'] = order_form
             return render(request, self.template_name, context)
 
         else:
@@ -70,14 +72,21 @@ class CheckoutView(View):
             order = Order(
                 customer=request.user,
                 total_price=cart.get_total_price(),
-                country=order_form.cleaned_data['country'],
-                city=order_form.cleaned_data['city'],
-                zip=order_form.cleaned_data['zip'],
-                address=order_form.cleaned_data['address'],
-                phone_number=order_form.cleaned_data['phone_number'],
                 comment=order_form.cleaned_data['comment'],
             )
-            # order.save()
+            order.save()
+
+            user = request.user
+
+            user.first_name = order_form.cleaned_data['first_name']
+            user.last_name = order_form.cleaned_data['last_name']
+            user.phone_number = order_form.cleaned_data['phone_number']
+            user.country = order_form.cleaned_data['country']
+            user.city = order_form.cleaned_data['city']
+            user.zip = order_form.cleaned_data['zip']
+            user.address = order_form.cleaned_data['address']
+
+            user.save()
 
             cart = request.session.get(settings.CART_SESSION_ID)
 
@@ -86,9 +95,10 @@ class CheckoutView(View):
                 quantity = item_data['quantity']
                 price = product.price * quantity
                 order_item = OrderItem(order=order, product=product, quantity=quantity, subtotal_price=price)
-                # order_item.save()
+                order_item.save()
 
-            # cart.clear()
+            cart.clear()
+
             send_order_email(request, request.user)
 
             return render(request, self.complete_template)

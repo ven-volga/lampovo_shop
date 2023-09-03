@@ -347,6 +347,7 @@ input:focus {
     border: 1px solid #ccc;
     padding: 5px;
     width: 100%;
+    text-align: center;
 }
 
 .custom-form-area {
@@ -356,8 +357,6 @@ input:focus {
     height: 120px;
     text-align: left;
 }
-
-
 
 footer {
     background-color: rgb(46, 48, 47);
