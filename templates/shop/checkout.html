@@ -15,12 +15,15 @@ Order - Lampovo
     <br>
     <h1>Order information</h1>
     <br>
+
+<!-- Cart no items -->
     {% if message %}
     {{ message }}
     <br>
     <a href="{% url 'product_list' %}" class="btn btn-outline-dark custom-btn mt-3">Continue shopping</a>
 </div>
 {% else %}
+
 <!-- Cart items table -->
 <div class="container d-flex cart-container">
     <div class="row">
@@ -72,44 +75,68 @@ Order - Lampovo
         </div>
     </div>
 </div>
+
 <!-- Shipping information form -->
 <div class="content-bloc" style="border-top: 0;">
     <br>
     <h2>Shipping information</h2>
     <br>
 </div>
-
-
-{{ order_form.country }}
-
-
-
-<!-- Django form -->
-<hr>
 <div class="container">
-    <div class="row">
-        <div class="col">
-            <form method="post" action="{% url 'checkout' %}">
-                {% csrf_token %}
-                {% for field in order_form %}
-                <div class="row">
-                    <div class="col">
-                        <div class="mb-3">
-                            <span class="text-start">{{ field.label_tag }}</span>
-                            <br>
-                            {{ field }}
-                            {{ field.errors }}
-                        </div>
-                    </div>
+    <form method="post" action="{% url 'checkout' %}">
+    {% csrf_token %}
+    <div class="row justify-content-md-center">
+        <div class="col-md-5">
+            <div class="row">
+                <div class="col">
+                    {{ order_form.country.label_tag }}
+                    {{ order_form.country }}
+                    {{ order_form.country.errors }}
                 </div>
-                {% endfor %}
-                <button type="submit" class=" btn btn-outline-dark custom-btn">Submit</button>
-            </form>
-        </div>
+                <div class="col">
+                    {{ order_form.city.label_tag }}
+                    {{ order_form.city }}
+                    {{ order_form.city.errors }}
+                </div>
+            </div>
         </div>
     </div>
+    <div class="row justify-content-md-center mt-3">
+        <div class="col-md-5">
+            <div class="row">
+                <div class="col">
+                    {{ order_form.zip.label_tag }}
+                    {{ order_form.zip }}
+                    {{ order_form.zip.errors }}
+                </div>
+                <div class="col">
+                    {{ order_form.phone_number.label_tag }}
+                    {{ order_form.phone_number }}
+                    {{ order_form.phone_number.errors }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-md-center mt-3">
+        <div class="col-md-5">
+            {{ order_form.address.label_tag }}
+            {{ order_form.address }}
+            {{ order_form.address.errors }}
+        </div>
+    </div>
+    <div class="row justify-content-md-center mt-3">
+        <div class="col-md-5">
+            {{ order_form.comment.label_tag }}
+            {{ order_form.comment }}
+            {{ order_form.comment.errors }}
+        </div>
+    </div>
+    <div class="row justify-content-md-center mt-4 mb-4">
+        <div class="col-md-5">
+            <button type="submit" class=" btn btn-outline-dark custom-btn w-50">To order</button>
+        </div>
+    </div>
+    </form>
 </div>
-
-
 {% endif %}
 {% endblock container %}
