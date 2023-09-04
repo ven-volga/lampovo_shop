@@ -16,22 +16,107 @@
     <br>
     <h1>User page</h1>
     <br>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <span>{{ user.username }}</span><br>
-                <span>{{ user.password }}</span><br>
-                <span>{{ user.email }}</span><br>
-                <span>{{ user.first_name }}</span><br>
-                <span>{{ user.last_name }}</span><br>
-                <span>{{ user.email_verify }}</span><br>
+<!-- Start user block -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="row">
+                <h3>{{ user.username }}</h3>
+            </div>
+            <div class="row">
+                <span>{{ user.email }}</span>
+            </div>
+            <div class="row mt-3">
+                <span><a href="{% url 'logout' %}" class="btn btn-white"><small>Log out</small></a></span>
             </div>
         </div>
-        <div class="row">
+        <div class="col-md-6">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th style="width:50%" class="text-start">Personal information</th>
+                        <th style="width:50%" class="text-end me-3"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="text-start">First name</td>
+                    <td class="text-end me-3">{% if user.first_name %}{{ user.first_name }}{% else %}{% endif %}</td>
+                </tr>
+                <tr>
+                    <td class="text-start">Last name</td>
+                    <td class="text-end me-3">{% if user.last_name %}{{ user.last_name }}{% else %}{% endif %}</td>
+                </tr>
+                <tr>
+                    <td class="text-start">Phone number</td>
+                    <td class="text-end me-3">{% if user.phone_number %}{{ user.phone_number }}{% else %}{% endif %}</td>
+                </tr>
+                </tbody>
+            </table>
+            <table class="table mt-4">
+                <thead>
+                    <tr>
+                        <th style="width:50%" class="text-start">Shipping information</th>
+                        <th style="width:50%" class="text-end me-3"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="text-start">Country</td>
+                    <td class="text-end me-3">{% if user.country %}{{ user.country }}{% else %}{% endif %}</td>
+                </tr>
+                <tr>
+                    <td class="text-start">City</td>
+                    <td class="text-end me-3">{% if user.city %}{{ user.city }}{% else %}{% endif %}</td>
+                </tr>
+                <tr>
+                    <td class="text-start">ZIP code</td>
+                    <td class="text-end me-3">{% if user.zip %}{{ user.zip }}{% else %}{% endif %}</td>
+                </tr>
+                <tr>
+                    <td class="text-start">Address</td>
+                    <td class="text-end me-3">{% if user.address %}{{ user.address }}{% else %}{% endif %}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-3">
             <div class="col">
-                <a href="{% url 'logout' %}">Log out</a>
+                <a href="#" class="btn btn-white" style="width: 180px;"><small>Edit Profile</small></a>
+            </div>
+            <div class="col mt-2">
+                <a href="{% url 'password_reset' %}" class="btn btn-white" style="width: 180px;"><small>Change Password</small></a>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Title line -->
+<div class="container">
+    <div class="col line">YOUR ORDERS</div>
+</div>
+
+{% for order in orders%}
+{{ order.id }}
+<br>
+{{ order.order_status }}
+<br>
+{{ order.created }}
+<br>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<br>
+{% for item in order.order_items %}
+{{ item.product }} | {{ item.quantity }} | {{ item.subtotal_price }}
+<br>
+{% endfor %}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<br>
+{{ order.total_price }}
+<br>
+<span>================================================</span>
+<br>
+{% endfor %}
+
+
+<!-- End user block -->
 {% endblock container %}

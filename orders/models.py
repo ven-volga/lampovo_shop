@@ -1,3 +1,5 @@
+from pprint import pprint
+
 from django.db import models
 from authentication.models import User
 from shop.models import Product
@@ -30,6 +32,44 @@ class Order(models.Model):
 
     def get_total_price(self):
         return sum(item.total_price() for item in self.items.all())
+
+    @staticmethod
+    def get_order_info(user_id):
+        user_orders = Order.objects.filter(customer_id=user_id)
+        order_data = []
+
+        # Get oder info dict
+        for order in user_orders:
+            order_id = order.order_id
+            created = order.created
+            customer = order.customer
+            total_price = order.total_price
+            order_status = order.order_status
+
+            # Get order items info dict
+            order_items = []
+            for item in OrderItem.objects.filter(order=order.order_id):
+                product = item.product
+                quantity = item.quantity
+                subtotal_price = item.subtotal_price
+
+                order_items.append({
+                    'product': product,
+                    'quantity': quantity,
+                    'subtotal_price': subtotal_price,
+                })
+
+            order_data.append({
+                'id': order_id,
+                'created': created,
+                'customer': customer,
+                'total_price': total_price,
+                'order_status': order_status,
+                'order_items': order_items,
+            })
+
+        pprint(order_data)
+        return order_data
 
 
 class OrderItem(models.Model):

@@ -8,6 +8,8 @@ from authentication.forms import RegisterUserForm, UserAuthenticationForm
 from authentication.utils import send_verify_email
 from django.contrib.auth.tokens import default_token_generator as token_generator
 
+from orders.models import Order
+
 User = get_user_model()
 
 
@@ -71,7 +73,13 @@ class UserPageView(View):
     template_redirect = 'registration/login.html'
 
     def get(self, request):
-        if request.user.is_authenticated:
-            return render(request, self.template_name)
+        if request.user.is_authenticated and request.user.role in ('Customer', 'CU', None):
+            orders = Order.get_order_info(request.user.id)
+
+            context = {
+                'orders': orders,
+            }
+
+            return render(request, self.template_name, context)
         else:
             return render(request, self.template_redirect)
