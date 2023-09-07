@@ -1,0 +1,20 @@
+{% extends 'base_page.html' %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static '/style.css' %}">{% endblock style %}
+{% block title %}
+Policy - Lampovo
+{% endblock title %}
+
+{% block name %}
+<a href="{% url 'main_page'%}" style="color: rgb(46, 48, 47);">Lampovo</a>
+{% endblock name %}
+
+{% block container %}
+<div class="content-bloc">
+    <!-- Store policy -->
+    <br>
+    <h1>Store policy</h1>
+    <br>
+</div>
+{% endblock container %}

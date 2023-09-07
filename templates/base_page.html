@@ -91,30 +91,30 @@
             <div class="link-bloc">
                 <ul>
                     <li><a href="{% url 'product_list' %}" class="footer-link">Shop</a></li>
-                    <li><a href="#" class="footer-link">About us</a></li>
-                    <li><a href="#" class="footer-link">Contact</a></li>
+                    <li><a href="{% url 'about' %}" class="footer-link">About us</a></li>
+                    <li><a href="{% url 'contacts' %}" class="footer-link">Contact</a></li>
                 </ul>
             </div>
             <div class="link-bloc">
                 <ul>
-                    <li><a href="#" class="footer-link">Shipping & Returns</a></li>
-                    <li><a href="#" class="footer-link">Store Policy</a></li>
-                    <li><a href="#" class="footer-link">Payment Methods</a></li>
+                    <li><a href="{% url 'shipping' %}" class="footer-link">Shipping & Returns</a></li>
+                    <li><a href="{% url 'policy' %}" class="footer-link">Store Policy</a></li>
+                    <li><a href="{% url 'pay_methods' %}" class="footer-link">Payment Methods</a></li>
                 </ul>
             </div>
             <div class="footer-icon-bloc">
-                <a href="https://www.instagram.com/l_ampovo/"><img class="footer-icon" src="{% static '/img/icons/instagram.webp' %}" alt="intagram_logo"></a>
-                <a href="#"><img class="footer-icon" src="{% static '/img/icons/facebook.webp' %}" alt="facebook_logo"></a>
-                <a href="#"><img class="footer-icon" src="{% static '/img/icons/pinterest.webp' %}"
+                <a href="https://www.instagram.com/l_ampovo/" target="_blank"><img class="footer-icon" src="{% static '/img/icons/instagram.webp' %}" alt="intagram_logo"></a>
+                <a href="#" target="_blank"><img class="footer-icon" src="{% static '/img/icons/facebook.webp' %}" alt="facebook_logo"></a>
+                <a href="#" target="_blank"><img class="footer-icon" src="{% static '/img/icons/pinterest.webp' %}"
                                  alt="pinterest_logo"></a>
-                <a href="#"><img class="footer-icon" src="{% static '/img/icons/youtube.webp' %}"
+                <a href="https://www.youtube.com/watch?v=HOlm6O7Ca2o" target="_blank"><img class="footer-icon" src="{% static '/img/icons/youtube.webp' %}"
                                  alt="youtube_logo"></a>
             </div>
         </div>
 
         <!-- Copyright bloc -->
         <div class="copyright">
-            <span>© 2023 by Lampovo | Design & Development by SkyDev | Powered on Django</span>
+            <span>© 2023 by Lampovo</span>
         </div>
     </footer>
 </div>

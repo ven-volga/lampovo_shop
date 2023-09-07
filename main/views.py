@@ -18,6 +18,41 @@ class MainPageView(View):
         return render(request, self.template_name, context)
 
 
+class AboutPageView(View):
+    template_name = 'main/about.html'
+
+    def get(self, request):
+        return render(request, self.template_name)
+
+
+class ShippingPageView(View):
+    template_name = 'main/shipping.html'
+
+    def get(self, request):
+        return render(request, self.template_name)
+
+
+class ContactsPageView(View):
+    template_name = 'main/contacts.html'
+
+    def get(self, request):
+        return render(request, self.template_name)
+
+
+class PolicyPageView(View):
+    template_name = 'main/policy.html'
+
+    def get(self, request):
+        return render(request, self.template_name)
+
+
+class PaymentMethodsPageView(View):
+    template_name = 'main/pay_methods.html'
+
+    def get(self, request):
+        return render(request, self.template_name)
+
+
 # Old view function with subscriber form (use before start site)
 def main_page(request):
     form = SubscriberForm(request.POST or None)
@@ -32,6 +67,6 @@ def main_page(request):
         print(request.POST)
         print(form.cleaned_data)
 
-        new_form = form.save()
+        form.save()
 
     return render(request, 'main/soon.html', context)
