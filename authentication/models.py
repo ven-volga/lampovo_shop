@@ -21,7 +21,7 @@ class User(AbstractUser):
     city = models.CharField(max_length=50, blank=True, null=True)
     zip = models.CharField(validators=[zip_regex], max_length=10, blank=True, null=True)
     address = models.CharField(max_length=400, blank=True, null=True)
-    role = models.CharField(max_length=4, choices=USER_ROLE_CHOICES, default='Customer')
+    role = models.CharField(max_length=4, choices=USER_ROLE_CHOICES, default='CU')
     email = models.EmailField(
         _("email address"),
         unique=True,

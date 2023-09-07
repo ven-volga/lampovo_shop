@@ -17,7 +17,6 @@ Including another URLconf
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
-
 from lampovo_shop import settings
 
 urlpatterns = [
@@ -27,6 +26,7 @@ urlpatterns = [
     path('users/', include('authentication.urls')),
     path('shop/', include('shop.urls')),
     path('orders/', include('orders.urls')),
+    path('sales/', include('sales.urls')),
 ]
 
 if settings.DEBUG:
