@@ -8,6 +8,7 @@ from authentication.forms import RegisterUserForm, UserAuthenticationForm
 from authentication.utils import send_verify_email
 from django.contrib.auth.tokens import default_token_generator as token_generator
 
+from orders.forms import OrderAddForm
 from orders.models import Order
 
 User = get_user_model()
@@ -86,7 +87,36 @@ class UserPageView(View):
 
 
 class EditUserView(View):
-    template_name = 'registration/edit.html'
+    template_name = 'registration/edit_user_info.html'
+    redirect_template = 'user'
 
     def get(self, request):
-        return render(request, self.template_name)
+        user_info_form = OrderAddForm(request)
+        context = {
+            'user_info_form': user_info_form,
+        }
+        return render(request, self.template_name, context)
+
+    def post(self, request):
+        user_info_form = OrderAddForm(request, request.POST)
+
+        if user_info_form.is_valid():
+            user = request.user
+
+            user.first_name = user_info_form.cleaned_data['first_name']
+            user.last_name = user_info_form.cleaned_data['last_name']
+            user.phone_number = user_info_form.cleaned_data['phone_number']
+            user.country = user_info_form.cleaned_data['country']
+            user.city = user_info_form.cleaned_data['city']
+            user.zip = user_info_form.cleaned_data['zip']
+            user.address = user_info_form.cleaned_data['address']
+
+            user.save()
+
+            return redirect(self.redirect_template)
+
+        context = {
+            'user_info_form': user_info_form,
+        }
+
+        return render(request, self.template_name, context)

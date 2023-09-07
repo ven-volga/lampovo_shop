@@ -1,0 +1,85 @@
+{% extends 'base_page.html' %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static '/style.css' %}">{% endblock style %}
+{% block title %}
+Edit information - Lampovo
+{% endblock title %}
+
+{% block name %}
+<a href="{% url 'main_page'%}" style="color: rgb(46, 48, 47);">Lampovo</a>
+{% endblock name %}
+
+{% block container %}
+<div class="content-bloc">
+    <br>
+    <h2>Edit user information</h2>
+    <br>
+    <div class="container">
+        <form method="post" action="{% url 'edit' %}">
+        {% csrf_token %}
+        <div class="row justify-content-md-center">
+            <div class="col-md-5">
+                <div class="row">
+                    <div class="col">
+                        {{ user_info_form.first_name.label_tag }}
+                        {{ user_info_form.first_name }}
+                        {{ user_info_form.first_name.errors }}
+                    </div>
+                    <div class="col">
+                        {{ user_info_form.last_name.label_tag }}
+                        {{ user_info_form.last_name }}
+                        {{ user_info_form.last_name.errors }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-md-center mt-3">
+            <div class="col-md-5">
+                <div class="row">
+                    <div class="col">
+                        {{ user_info_form.phone_number.label_tag }}
+                        {{ user_info_form.phone_number }}
+                        {{ user_info_form.phone_number.errors }}
+                    </div>
+                    <div class="col">
+                        {{ user_info_form.country.label_tag }}
+                        {{ user_info_form.country }}
+                        {{ user_info_form.country.errors }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-md-center mt-3">
+            <div class="col-md-5">
+                <div class="row">
+                    <div class="col">
+                        {{ user_info_form.city.label_tag }}
+                        {{ user_info_form.city }}
+                        {{ user_info_form.city.errors }}
+                    </div>
+                    <div class="col">
+                        {{ user_info_form.zip.label_tag }}
+                        {{ user_info_form.zip }}
+                        {{ user_info_form.zip.errors }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-md-center mt-3">
+            <div class="col-md-5">
+                {{ user_info_form.address.label_tag }}
+                {{ user_info_form.address }}
+                {{ user_info_form.address.errors }}
+            </div>
+        </div>
+        <div class="row justify-content-md-center mt-4 mb-4">
+            <div class="col-md-5">
+                <button type="submit" class=" btn btn-outline-dark custom-btn w-25">Save</button>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+
+{% endblock container %}
