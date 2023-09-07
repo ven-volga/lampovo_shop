@@ -1,7 +1,6 @@
 from datetime import date
 from django.shortcuts import render
 from django.views import View
-
 from shop.models import Product
 from .forms import SubscriberForm
 
