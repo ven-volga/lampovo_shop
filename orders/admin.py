@@ -6,7 +6,7 @@ from orders.models import Order, OrderItem
 class OrderAdmin(admin.ModelAdmin):
     list_display = (
         'order_id', 'created', 'customer', 'total_price',
-        'order_items',
+        'order_items', 'order_status',
     )
     list_filter = ('created', 'customer',)
 

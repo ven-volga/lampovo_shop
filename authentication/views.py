@@ -35,11 +35,11 @@ class EmailVerifyView(View):
             uid = urlsafe_base64_decode(uidb64).decode()
             user = User.objects.get(pk=uid)
         except (
-            TypeError,
-            ValueError,
-            OverflowError,
-            User.DoesNotExist,
-            ValidationError,
+                TypeError,
+                ValueError,
+                OverflowError,
+                User.DoesNotExist,
+                ValidationError,
         ):
             user = None
         return user
@@ -83,3 +83,10 @@ class UserPageView(View):
             return render(request, self.template_name, context)
         else:
             return render(request, self.template_redirect)
+
+
+class EditUserView(View):
+    template_name = 'registration/edit.html'
+
+    def get(self, request):
+        return render(request, self.template_name)

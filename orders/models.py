@@ -1,5 +1,3 @@
-from pprint import pprint
-
 from django.db import models
 from authentication.models import User
 from shop.models import Product
@@ -10,7 +8,7 @@ class Order(models.Model):
         ('NEW', 'New order'),
         ('WFP', 'Waiting for payment'),
         ('IP', 'In production'),
-        ('CMP', 'Completing'),
+        ('CMP', 'Complete'),
         ('SHP', 'Shipped'),
     ]
 
@@ -23,7 +21,7 @@ class Order(models.Model):
     # promo_code = models.CharField(max_length=12, blank=True, null=True)
 
     class Meta:
-        ordering = ('order_id',)
+        ordering = ('-order_id',)
         verbose_name = 'Order'
         verbose_name_plural = 'Orders'
 
@@ -33,20 +31,21 @@ class Order(models.Model):
     def get_total_price(self):
         return sum(item.total_price() for item in self.items.all())
 
+    def get_status_display(self):
+        return dict(Order.ORDER_STATUS_CHOICES)[self.order_status]
+
     @staticmethod
     def get_order_info(user_id):
         user_orders = Order.objects.filter(customer_id=user_id)
         order_data = []
 
-        # Get oder info dict
         for order in user_orders:
             order_id = order.order_id
             created = order.created
             customer = order.customer
             total_price = order.total_price
-            order_status = order.order_status
+            order_status = order.get_status_display()
 
-            # Get order items info dict
             order_items = []
             for item in OrderItem.objects.filter(order=order.order_id):
                 product = item.product
@@ -68,7 +67,6 @@ class Order(models.Model):
                 'order_items': order_items,
             })
 
-        pprint(order_data)
         return order_data
 
 

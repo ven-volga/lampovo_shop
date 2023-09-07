@@ -2,3 +2,4 @@
 3. Add all routes and templates for it
 4. User page with orders list and statuses
 5. Page for manager
+6. Add items to order in manager page

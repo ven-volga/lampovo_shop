@@ -1,14 +1,13 @@
 from django.urls import path, include
 from django.views.generic import TemplateView
+from authentication.views import RegisterUserView, UserPageView, EmailVerifyView, LoginUserView, EditUserView
 
-from authentication.views import RegisterUserView, UserPageView, EmailVerifyView, LoginUserView
-
-import django.contrib.auth.urls
 
 urlpatterns = [
     path('login/', LoginUserView.as_view(), name='login'),
     path('register/', RegisterUserView.as_view(), name='register'),
     path('info/', UserPageView.as_view(), name='user'),
+    path('edit/', EditUserView.as_view(), name='edit'),
     path('confirm_email/', TemplateView.as_view(
         template_name='registration/confirm_email.html'), name='confirm_email'),
     path(

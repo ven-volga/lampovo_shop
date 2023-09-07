@@ -82,7 +82,7 @@
         </div>
         <div class="col-md-3">
             <div class="col">
-                <a href="#" class="btn btn-white" style="width: 180px;"><small>Edit Profile</small></a>
+                <a href="{% url 'edit' %}" class="btn btn-white" style="width: 180px;"><small>Edit Profile</small></a>
             </div>
             <div class="col mt-2">
                 <a href="{% url 'password_reset' %}" class="btn btn-white" style="width: 180px;"><small>Change Password</small></a>
@@ -96,27 +96,58 @@
     <div class="col line">YOUR ORDERS</div>
 </div>
 
-{% for order in orders%}
-{{ order.id }}
-<br>
-{{ order.order_status }}
-<br>
-{{ order.created }}
-<br>
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<br>
-{% for item in order.order_items %}
-{{ item.product }} | {{ item.quantity }} | {{ item.subtotal_price }}
-<br>
-{% endfor %}
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<br>
-{{ order.total_price }}
-<br>
-<span>================================================</span>
-<br>
-{% endfor %}
-
-
+<!-- User orders list -->
+{% if orders %}
+<div class="container mt-1 mb-5">
+    <div class="row justify-content-md-center">
+        <div class="col-md-8">
+            {% for order in orders %}
+            <div class="card text-center mt-4" style="border-radius: 3px;">
+                <div class="card-header">
+                  <div class="row">
+                    <div class="col-md-4 text-start">
+                        Order ID: <strong>{{ order.id }} </strong>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        {{ order.created }}
+                    </div>
+                    <div class="col-md-4 text-end">
+                        Status: <strong>{{ order.order_status }} </strong>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th style="width:50%" class="text-start">Product</th>
+                                <th style="width:25%" class="text-end me-3">Quantity</th>
+                                <th style="width:25%" class="text-end me-3">Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for item in order.order_items %}
+                        <tr>
+                            <td class="text-start">{{ item.product }}</td>
+                            <td class="text-end me-3">{{ item.quantity }}</td>
+                            <td class="text-end me-3">{{ item.subtotal_price }}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer text-end">
+                  <strong>Total: {{ order.total_price }}$</strong>
+                </div>
+              </div>
+              {% endfor %}
+        </div>
+    </div>
+</div>
 <!-- End user block -->
+{% else %}
+    <br>
+    <h3>You have no orders yet.</h3>
+    <br>
+{% endif %}
 {% endblock container %}
