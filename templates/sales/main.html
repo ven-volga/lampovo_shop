@@ -1,0 +1,27 @@
+{% extends 'sales_base_page.html' %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static '/style.css' %}">{% endblock style %}
+{% block title %}
+Admin tools - Lampovo
+{% endblock title %}
+
+{% block name %}
+<a href="{% url 'main_sales'%}" style="color: rgb(46, 48, 47);">Admin tools</a>
+{% endblock name %}
+
+{% block container %}
+<div class="content-bloc">
+    <!-- Sales main block -->
+    <br>
+    <h1>Sales</h1>
+    <br>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <a href="{% url 'orders' %}">All customer orders</a>
+        </div>
+    </div>
+</div>
+{% endblock container %}

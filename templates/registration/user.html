@@ -26,6 +26,11 @@
             <div class="row">
                 <span>{{ user.email }}</span>
             </div>
+            {% if user.is_staff %}
+            <div class="row mt-3">
+                <span><a href="{% url 'main_sales' %}" class="btn btn-dark">Admin tools</a></span>
+            </div>
+            {% endif %}
             <div class="row mt-3">
                 <span><a href="{% url 'logout' %}" class="btn btn-white"><small>Log out</small></a></span>
             </div>

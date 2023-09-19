@@ -71,10 +71,10 @@ class RegisterUserView(View):
 
 class UserPageView(View):
     template_name = 'registration/user.html'
-    template_redirect = 'registration/login.html'
+    template_redirect = 'login'
 
     def get(self, request):
-        if request.user.is_authenticated and request.user.role in ('CU', ):
+        if request.user.is_authenticated:
             orders = Order.get_order_info(request.user.id)
 
             context = {
@@ -83,11 +83,8 @@ class UserPageView(View):
 
             return render(request, self.template_name, context)
 
-        elif request.user.is_authenticated and request.user.role in ('AM', 'DEV',):
-            return redirect('orders')
-
         else:
-            return render(request, self.template_redirect)
+            return redirect(self.template_redirect)
 
 
 class EditUserView(View):

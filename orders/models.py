@@ -8,8 +8,8 @@ class Order(models.Model):
         ('NEW', 'New order'),
         ('WFP', 'Waiting for payment'),
         ('IP', 'In production'),
-        ('CMP', 'Complete'),
         ('SHP', 'Shipped'),
+        ('CMP', 'Complete'),
     ]
 
     order_id = models.AutoField(primary_key=True)
@@ -33,6 +33,9 @@ class Order(models.Model):
 
     def get_status_display(self):
         return dict(Order.ORDER_STATUS_CHOICES)[self.order_status]
+
+    def formatted_datetime(self):
+        return self.created.strftime("%d %b %Y | %H:%M")
 
     @staticmethod
     def get_order_info(user_id):

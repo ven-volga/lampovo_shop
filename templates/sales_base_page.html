@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static '/img/favicon.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static '/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static '/style.css' %}">
+
+    <title>{% block title %}Admin - Lampovo{% endblock title %}</title>
+</head>
+<body>
+<div class="page-wrapper">
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="d-flex flex-row" style="height: 80px; background-color: white">
+                        <!-- Page name bloc -->
+                        <div class="ps-2 ps-md-4 head-style align-self-center">
+                            {% block name %} {% endblock name %}
+                        </div>
+                        <!-- User head bloc -->
+                        {% if user.is_authenticated %}
+                        <div class="pe-2 pe-md-4 align-self-center ms-auto">
+                            <a href="{% url 'user' %}">
+                                <i class="fa-solid fa-user icon-style"></i>
+                                <span class="user-style">{{ user.username }}</span>
+                            </a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="wrapper">
+        {% block container %}
+
+        <!-- For page content -->
+
+        {% endblock container %}
+    </main>
+
+    <footer>
+        <!-- Main footer bloc -->
+        <div class="footer-style">
+            <div class="link-bloc">
+                <ul>
+                    <li><a href="{% url 'main_sales'%}" class="footer-link">Admin tools</a></li>
+                    <li><a href="/admin/" class="footer-link">Admin panel</a></li>
+                </ul>
+            </div>
+            <div class="link-bloc">
+                <ul>
+                    <li><a href="{% url 'orders' %}" class="footer-link">Orders</a></li>
+                    <li><a href="{% url 'product_list' %}" class="footer-link">Shop</a></li>
+                </ul>
+            </div>
+            <div class="footer-icon-bloc">
+                <a href="https://www.instagram.com/l_ampovo/" target="_blank"><img class="footer-icon" src="{% static '/img/icons/instagram.webp' %}" alt="intagram_logo"></a>
+                <a href="#" target="_blank"><img class="footer-icon" src="{% static '/img/icons/facebook.webp' %}" alt="facebook_logo"></a>
+                <a href="#" target="_blank"><img class="footer-icon" src="{% static '/img/icons/pinterest.webp' %}"
+                                 alt="pinterest_logo"></a>
+                <a href="https://www.youtube.com/watch?v=HOlm6O7Ca2o" target="_blank"><img class="footer-icon" src="{% static '/img/icons/youtube.webp' %}"
+                                 alt="youtube_logo"></a>
+            </div>
+        </div>
+        <!-- Copyright bloc -->
+        <div class="copyright">
+            <span>© 2023 by Lampovo</span>
+        </div>
+    </footer>
+</div>
+<script src="{% static 'script.js' %}"></script>
+<script src="{% static '/bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="https://kit.fontawesome.com/9984184d83.js" crossorigin="anonymous"></script>
+</body>
+</html>
