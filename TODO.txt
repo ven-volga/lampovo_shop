@@ -1,3 +1,2 @@
 1. {% static 'img/no_image.png' %}
-5. Page for manager
 6. Add items to order in manager page

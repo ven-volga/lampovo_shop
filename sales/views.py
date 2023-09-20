@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from django.views import View
+
+from authentication.models import User
 from orders.models import Order, OrderItem
-from sales.forms import OrderFilterForm
+from sales.forms import OrderFilterForm, ChangeStatusForm
 
 
 class MainSalesPageView(View):
@@ -55,5 +57,39 @@ class OrdersPageView(View):
         return redirect('main_page')
 
 
-class OrdersDetailsView(View):
-    pass
+class OrderDetailsView(View):
+    template_name = 'sales/order_details.html'
+
+    def get(self, request, order_id):
+        order = Order.objects.get(order_id=order_id)
+        order_items = OrderItem.objects.filter(order=order_id)
+        ship_info = User.objects.get(email=order.customer)
+        form = ChangeStatusForm()
+
+        context = {
+            'order': order,
+            'order_items': order_items,
+            'ship_info': ship_info,
+            'form': form,
+        }
+
+        if request.user.is_authenticated and request.user.role not in ('CU',):
+            return render(request, self.template_name, context)
+
+        return redirect('main_page')
+
+    def post(self, request, order_id):
+        form = ChangeStatusForm(request.POST)
+
+        if form.is_valid():
+            order = Order.objects.get(order_id=order_id)
+            order.order_status = form.cleaned_data['order_status']
+            order.save()
+
+            return render(request, self.template_name)
+
+        context = {
+            'form': form,
+        }
+
+        return render(request, self.template_name, context)

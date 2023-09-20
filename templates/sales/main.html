@@ -14,14 +14,15 @@ Admin tools - Lampovo
 <div class="content-bloc">
     <!-- Sales main block -->
     <br>
-    <h1>Sales</h1>
+    <h1>Lampovo Admin</h1>
     <br>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <a href="{% url 'orders' %}">All customer orders</a>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 m-auto">
+                <a href="{% url 'orders' %}" class="btn card-btn-style">Customer orders</a>
+            </div>
         </div>
     </div>
 </div>
+
 {% endblock container %}

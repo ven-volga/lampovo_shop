@@ -46,7 +46,7 @@ Orders - Lampovo
                     <tbody>
                         {% for order in orders %}
                             <tr>
-                                <td><a href=""><strong>{{ order.order_id }}</strong></a></td>
+                                <td><a href="{% url 'order_details' order.order_id %}"><strong>{{ order.order_id }}</strong></a></td>
                                 <td>{{ order.formatted_datetime }}</td>
                                 <td>{{ order.customer }}</td>
                                 <td>{{ order.total_price }}</td>

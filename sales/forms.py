@@ -10,3 +10,12 @@ class OrderFilterForm(forms.Form):
         required=False,
     )
     customer = forms.ModelChoiceField(queryset=User.objects.all(), required=False)
+
+
+class ChangeStatusForm(forms.Form):
+    order_status = forms.ChoiceField(choices=Order.ORDER_STATUS_CHOICES, required=False)
+    order_confirm = forms.BooleanField(required=True)
+
+
+class OrderEditForm(forms.Form):
+    pass
