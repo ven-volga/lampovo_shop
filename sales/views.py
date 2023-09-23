@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.views import View
 
 from authentication.models import User
@@ -29,7 +30,7 @@ class OrdersPageView(View):
     template_name = 'sales/orders.html'
 
     def get(self, request):
-        if request.user.is_authenticated and request.user.role not in ('CU',):
+        if request.user.is_authenticated and request.user.role not in ('CU', ):
             form = OrderFilterForm(request.GET)
             orders = Order.objects.all()
 
@@ -64,7 +65,7 @@ class OrderDetailsView(View):
         order = Order.objects.get(order_id=order_id)
         order_items = OrderItem.objects.filter(order=order_id)
         ship_info = User.objects.get(email=order.customer)
-        form = ChangeStatusForm()
+        form = ChangeStatusForm(initial={'order_status': order.order_status})
 
         context = {
             'order': order,
@@ -86,7 +87,7 @@ class OrderDetailsView(View):
             order.order_status = form.cleaned_data['order_status']
             order.save()
 
-            return render(request, self.template_name)
+            return redirect(reverse('order_details', args=[order_id]))
 
         context = {
             'form': form,
