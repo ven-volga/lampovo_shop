@@ -20,15 +20,19 @@ Admin tools - Lampovo
         <div class="row">
             <!-- Nav bar -->
             <div class="col-md-2">
-                <h5>Navigation:</h5>
+                <span>
+                    <a href="{% url 'orders' %}" class="back-link"><i
+                            class="fa-solid fa-chevron-left"></i> Back to all orders</a>
+                </span>
+                <h5 class="mt-5">Edit order:</h5>
                 <div>
-                    <button type="" class="btn card-btn-style mt-3">Some cool link</button>
+                    <a href="#" class="btn card-btn-style mt-3" style="width: 90%;">Comment</a>
                 </div>
                 <div>
-                    <button type="" class="btn card-btn-style mt-3">Some cool link</button>
+                    <button type="" class="btn card-btn-style mt-3" style="width: 90%;">Items</button>
                 </div>
                 <div>
-                    <button type="" class="btn card-btn-style mt-3">Some cool link</button>
+                    <button type="" class="btn card-btn-style mt-3" style="width: 90%;">Client info</button>
                 </div>
             </div>
             <!-- Main order info -->
@@ -63,7 +67,7 @@ Admin tools - Lampovo
                     </thead>
                     <tbody>
                     <tr>
-                        <td>{{ order.comment }}</td>
+                        <td>{% if order.comment %}{{ order.comment}}{% else %}No comment{% endif %}</td>
                     </tr>
                     </tbody>
                 </table>
@@ -105,15 +109,15 @@ Admin tools - Lampovo
                     <tbody>
                     <tr>
                         <td class="text-start">First name</td>
-                        <td class="text-end me-3">{{ user.first_name }}</td>
+                        <td class="text-end me-3">{{ ship_info.first_name }}</td>
                     </tr>
                     <tr>
                         <td class="text-start">Last name</td>
-                        <td class="text-end me-3">{{ user.last_name }}</td>
+                        <td class="text-end me-3">{{ ship_info.last_name }}</td>
                     </tr>
                     <tr>
                         <td class="text-start">Phone number</td>
-                        <td class="text-end me-3">{{ user.phone_number }}</td>
+                        <td class="text-end me-3">{{ ship_info.phone_number }}</td>
                     </tr>
                     </tbody>
                 </table>
@@ -127,19 +131,19 @@ Admin tools - Lampovo
                     <tbody>
                     <tr>
                         <td class="text-start">Country</td>
-                        <td class="text-end me-3">{{ user.country }}</td>
+                        <td class="text-end me-3">{{ ship_info.country }}</td>
                     </tr>
                     <tr>
                         <td class="text-start">City</td>
-                        <td class="text-end me-3">{{ user.city }}</td>
+                        <td class="text-end me-3">{{ ship_info.city }}</td>
                     </tr>
                     <tr>
                         <td class="text-start">ZIP code</td>
-                        <td class="text-end me-3">{{ user.zip }}</td>
+                        <td class="text-end me-3">{{ ship_info.zip }}</td>
                     </tr>
                     <tr>
                         <td class="text-start">Address</td>
-                        <td class="text-end me-3">{{ user.address }}</td>
+                        <td class="text-end me-3">{{ ship_info.address }}</td>
                     </tr>
                     </tbody>
                 </table>

@@ -7,7 +7,7 @@ name = "pypi"
 django = "*"
 python-dotenv = "*"
 django-widget-tweaks = "*"
-pillow = "*"
+pillow = "10.2.0"
 
 [dev-packages]
 
