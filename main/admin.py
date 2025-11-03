@@ -12,3 +12,7 @@ class SubscriberAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Subscriber, SubscriberAdmin)
+
+# admin@lampovo.com
+# admin
+# admin

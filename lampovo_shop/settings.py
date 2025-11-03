@@ -23,7 +23,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 TEMPLATES_DIRS = os.path.join(BASE_DIR, 'templates')
 
-
 CART_SESSION_ID = 'cart'
 
 # Quick-start development settings - unsuitable for production
@@ -92,7 +91,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'lampovo_shop.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
@@ -102,7 +100,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -124,7 +121,6 @@ else:
         },
     ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -135,7 +131,6 @@ TIME_ZONE = 'Europe/Kiev'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
