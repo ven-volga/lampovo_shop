@@ -1,5 +1,6 @@
 from django.urls import path, include
 from django.views.generic import TemplateView
+from django.contrib.auth import views as auth_views
 from django.contrib.auth.views import LogoutView
 from authentication.views import RegisterUserView, UserPageView, EmailVerifyView, LoginUserView, EditUserView
 
@@ -20,4 +21,12 @@ urlpatterns = [
         template_name='registration/invalid_verify.html'), name='invalid_verify'),
     path('', include('django.contrib.auth.urls')),
     path('logout/', LogoutView.as_view(), name='logout'),
+    path(
+        'users/password_change/',
+        auth_views.PasswordChangeView.as_view(template_name='registration/password_change.html'),
+        name='password_change'),
+    path(
+        'users/password_change/done/',
+        auth_views.PasswordChangeDoneView.as_view(template_name='registration/password_change_done.html'),
+        name='password_change_done'),
 ]
