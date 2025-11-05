@@ -7,6 +7,7 @@ from django.views import View
 from authentication.forms import RegisterUserForm, UserAuthenticationForm
 from authentication.utils import send_verify_email
 from django.contrib.auth.tokens import default_token_generator as token_generator
+from django.contrib import messages
 
 from orders.forms import OrderAddForm
 from orders.models import Order

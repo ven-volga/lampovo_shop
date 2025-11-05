@@ -26,7 +26,7 @@ class UserAdmin(DjangoUserAdmin):
          ),
     )
 
-    list_display = ("email", "username", "first_name", "last_name", "email_verify", "is_staff",)
+    list_display = ("email", "role", "username", "first_name", "last_name", "email_verify", "is_staff", "is_active")
     list_editable = ()
     list_filter = ("is_staff", "is_superuser", "is_active", "groups", "role")
     search_fields = ("username", "first_name", "last_name", "email")

@@ -2,5 +2,3 @@
 2. Orders edit in managers page
 3. Allert to manager when new order added
 6. Add items to order in manager page
-
-change password in user page, not reset
