@@ -25,6 +25,7 @@ class EmailVerifyView(View):
 
         if user is not None and token_generator.check_token(user, token):
             user.email_verify = True
+            user.is_active = True
             user.save()
             login(request, user)
             return redirect('main_page')
@@ -59,10 +60,9 @@ class RegisterUserView(View):
     def post(self, request):
         register_form = RegisterUserForm(request.POST)
         if register_form.is_valid():
-            register_form.save()
-            email = register_form.cleaned_data.get('email')
-            password = register_form.cleaned_data.get('password1')
-            user = authenticate(email=email, password=password)
+            user = register_form.save(commit=False)
+            user.is_active = False
+            user.save()
             send_verify_email(request, user)
             return redirect('confirm_email')
 
