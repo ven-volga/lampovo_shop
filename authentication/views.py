@@ -28,6 +28,7 @@ class EmailVerifyView(View):
             user.is_active = True
             user.save()
             login(request, user)
+            messages.success(request, "Email confirmed. Welcome!")
             return redirect('main_page')
         return redirect('invalid_verify')
 
